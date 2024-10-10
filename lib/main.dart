@@ -7,7 +7,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: const Text('Terpiez'),
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.brown,
             bottom: const TabBar(
               tabs: [
                 Tab(icon: Icon(Icons.show_chart), text: 'Stats'),
@@ -33,55 +32,78 @@ class MyApp extends StatelessWidget {
           body: SafeArea(
             child: TabBarView(
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 20),
-                    Text(
-                      'Statistics',
-                      style: TextStyle(fontSize: 30),
-                    ),
-                    SizedBox(height: 40),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Text('Terpiez Found:'),
-                        ),
-                        Text('12', textAlign: TextAlign.center),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Text('Days Active:'),
-                        ),
-                        Text('3', textAlign: TextAlign.center),
-                      ],
-                    ),
-                  ],
+                const Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 20),
+                      Text(
+                        'Statistics',
+                        style: TextStyle(fontSize: 30),
+                      ),
+                      SizedBox(height: 40),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text('Terpiez Found:'),
+                          ),
+                          Text('12', textAlign: TextAlign.center),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text('Days Active:'),
+                          ),
+                          Text('3', textAlign: TextAlign.center),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center, // Change to center to reduce excess space
                   children: [
-                    Text(
+                    const SizedBox(height: 20),
+                    const Text(
                       'Terpiez Finder',
-                      style: TextStyle(fontSize: 30),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 24),
                     ),
                     Flexible(
-                      child: Icon(Icons.map,
-                      size: 300,
-                      color: Colors.black,
-                    ),
-                    ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Distance to nearest Terpiez: 300 meters',
-                      style: TextStyle(fontSize: 18),
+                      child: OrientationBuilder(
+                        builder: (context, orientation) {
+                          return Flex(
+                            direction: orientation == Orientation.portrait
+                                ? Axis.vertical
+                                : Axis.horizontal,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              LayoutBuilder(
+                                builder: (context,  constraints) {
+                                  return Icon(
+                                    Icons.map,
+                                    size: constraints.biggest.shortestSide,
+                                    color: Colors.black,
+                                  );
+                                }
+                              ),
+                              const SizedBox(height: 10), // Reduce height here to make it tighter
+                              const Text(
+                                'Closest Terpiez: 123.0m',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -90,13 +112,13 @@ class MyApp extends StatelessWidget {
                     Builder(
                       builder: (context) {
                         return ListTile(
-                          leading: Icon(Icons.bug_report),
-                          title: Text('Bug'),
+                          leading: const Icon(Icons.bug_report),
+                          title: const Text('Bug'),
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => TerpiezDetailPage(
+                                builder: (context) => const TerpiezDetailPage(
                                   icon: Icons.bug_report,
                                   name: 'Bug',
                                 ),
@@ -107,13 +129,13 @@ class MyApp extends StatelessWidget {
                       },
                     ),
                     ListTile(
-                      leading: Icon(Icons.airplanemode_active),
-                      title: Text('Plane'),
+                      leading: const Icon(Icons.airplanemode_active),
+                      title: const Text('Plane'),
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => TerpiezDetailPage(
+                            builder: (context) => const TerpiezDetailPage(
                               icon: Icons.airplanemode_active,
                               name: 'Plane',
                             ),
@@ -131,7 +153,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 
 class TerpiezDetailPage extends StatelessWidget {
   final IconData icon;
@@ -154,16 +175,16 @@ class TerpiezDetailPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Icon(
               icon,
               size: 150,
               color: Colors.black,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               name,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ],
         ),
@@ -171,6 +192,9 @@ class TerpiezDetailPage extends StatelessWidget {
     );
   }
 }
+
+
+
 
 
 // class MyHomePage extends StatefulWidget {
