@@ -294,7 +294,7 @@ class _BackgroundAnimationState extends State<BackgroundAnimation> with SingleTi
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
     return SizedBox.expand( // Make sure it fills the available space
       child: AnimatedBuilder(
         animation: _controller,
