@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:uuid/uuid.dart';
 
 
 void main() {
@@ -85,6 +85,17 @@ class MyApp extends StatelessWidget {
                           ),
                         ],
                       ),
+                      
+                      Expanded(
+                        child: Center(
+                          child: Consumer<UserState> (
+                        builder: (context, userState, child){
+                          return Text(
+                            'User: ${userState.userID}',
+                            textAlign: TextAlign.center,
+                          );
+                        },
+                      ) ,) ,)
                     ],
                   ),
                 ),
@@ -240,13 +251,16 @@ class TerpiezDetailPage extends StatelessWidget {
 
 class UserState extends ChangeNotifier {
   int _terpiezCaught  = 0;
+  final String _userID;
   DateTime _startDate;
 
-  UserState() : _startDate = DateTime.now();
+  UserState() : _startDate = DateTime.now(), _userID = const Uuid().v4();
 
   int get terpiezCaught => _terpiezCaught;
 
   DateTime get startDate => _startDate;
+
+  String get userID => _userID;
 
   void incrementTerpiez(){
     _terpiezCaught++;
