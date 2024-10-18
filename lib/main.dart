@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(create: (context) => UserState(), 
+    child: const MyApp(),)
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -32,35 +38,51 @@ class MyApp extends StatelessWidget {
           body: SafeArea(
             child: TabBarView(
               children: [
-                const Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: const Column(
+                Padding(
+                  padding:  const EdgeInsets.all(10.0),
+                  child:  Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: 20),
-                      Text(
+                      const SizedBox(height: 20),
+                      const Text(
                         'Statistics',
                         style: TextStyle(fontSize: 30),
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Expanded(
+                          const Expanded(
                             child: Text('Terpiez Found:'),
                           ),
-                          Text('12', textAlign: TextAlign.center),
+                          // const Text('12', textAlign: TextAlign.center),
+                          Consumer<UserState> (
+                            builder: (context, userState, child){
+                              return Text(
+                                '${userState.terpiezCaught}',
+                                textAlign: TextAlign.center,
+                              );
+                            },
+                            ),
                         ],
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Expanded(
+                          const Expanded(
                             child: Text('Days Active:'),
                           ),
-                          Text('3', textAlign: TextAlign.center),
+                          // Text('3', textAlign: TextAlign.center),
+                          Consumer<UserState> (
+                            builder: (context, userState, child){
+                              return Text(
+                              '${userState.numOfDaysPlayed}',
+                              textAlign: TextAlign.center,
+                              );
+                            },
+                          ),
                         ],
                       ),
                     ],
@@ -79,7 +101,11 @@ class MyApp extends StatelessWidget {
                     Flexible(
                       child: OrientationBuilder(
                         builder: (context, orientation) {
-                          return Flex(
+                          return GestureDetector(
+                            onTap: () {
+                              Provider.of<UserState>(context, listen: false).incrementTerpiez();
+                            },
+                          child: Flex(
                             direction: orientation == Orientation.portrait
                                 ? Axis.vertical
                                 : Axis.horizontal,
@@ -101,6 +127,7 @@ class MyApp extends StatelessWidget {
                                 style: TextStyle(fontSize: 18),
                               ),
                             ],
+                          ),
                           );
                         },
                       ),
@@ -112,7 +139,12 @@ class MyApp extends StatelessWidget {
                     Builder(
                       builder: (context) {
                         return ListTile(
-                          leading: const Icon(Icons.bug_report),
+                          leading: 
+                          // const Icon(Icons.bug_report),
+                           Hero(
+                            tag: 'terpiez_bug_hero_trans',
+                            child: const Icon(Icons.bug_report),
+                            ),
                           title: const Text('Bug'),
                           onTap: () {
                             Navigator.push(
@@ -121,6 +153,7 @@ class MyApp extends StatelessWidget {
                                 builder: (context) => const TerpiezDetailPage(
                                   icon: Icons.bug_report,
                                   name: 'Bug',
+                                  //heroTag: 'terpiez_bug_hero_trans',
                                 ),
                               ),
                             );
@@ -157,11 +190,13 @@ class MyApp extends StatelessWidget {
 class TerpiezDetailPage extends StatelessWidget {
   final IconData icon;
   final String name;
+  // final String heroTag;
 
   const TerpiezDetailPage({
     Key? key,
     required this.icon,
     required this.name,
+    // required this.heroTag,
   }) : super(key: key);
 
   @override
@@ -170,28 +205,148 @@ class TerpiezDetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(name),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 40),
-            Icon(
-              icon,
-              size: 150,
-              color: Colors.black,
+      body: Stack(
+        children: [
+           BackgroundAnimation(), 
+            Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 40),
+                Hero(
+                  tag: 'terpiez_bug_hero_trans',
+                  child:
+                    Icon(
+                      icon,
+                      size: 150,
+                      color: Colors.black,
+                    ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  name,
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
-            const SizedBox(height: 10),
-            Text(
-              name,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
+
+
+class UserState extends ChangeNotifier {
+  int _terpiezCaught  = 0;
+  DateTime _startDate;
+
+  UserState() : _startDate = DateTime.now();
+
+  int get terpiezCaught => _terpiezCaught;
+
+  DateTime get startDate => _startDate;
+
+  void incrementTerpiez(){
+    _terpiezCaught++;
+    notifyListeners();
+  }
+
+  int get numOfDaysPlayed {
+    final currentDate = DateTime.now();
+    return currentDate.difference(_startDate).inDays;
+  }
+
+
+
+
+
+
+
+}
+
+
+class BackgroundAnimation extends StatefulWidget{
+  @override
+  _BackgroundAnimationState createState() => _BackgroundAnimationState();
+
+}
+
+class _BackgroundAnimationState extends State<BackgroundAnimation> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 6),
+      vsync: this,
+    )..repeat(reverse: true);
+
+    
+  }
+
+  @override
+  void dispose(){
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox.expand( // Make sure it fills the available space
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return CustomPaint(
+            painter: _PaintBackground(_controller.value),
+            size: Size.infinite,
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _PaintBackground extends CustomPainter {
+  final double animationVal;
+
+  _PaintBackground(this.animationVal);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+    ..color = Colors.redAccent.withOpacity(0.3)
+    ..style = PaintingStyle.fill;
+
+    double stripeWidth = size.width * 0.4;
+    double offset = (animationVal * size.width) % (stripeWidth * 2);
+
+    
+    for (double x = -stripeWidth * 2; x < size.width + stripeWidth * 2; x += stripeWidth * 2) {
+      Path path = Path();
+      path.moveTo(x - offset, 0);
+      path.lineTo(x + stripeWidth - offset, 0);
+      path.lineTo(x + stripeWidth * 2 - offset, size.height);
+      path.lineTo(x + stripeWidth - offset, size.height);
+      path.close();
+
+      canvas.drawPath(path, paint);
+    }
+  }
+
+  @override
+    bool shouldRepaint(covariant CustomPainter oldDelegate){
+    return true;
+  }
+
+
+
+  
+}
+
+
 
 
 
