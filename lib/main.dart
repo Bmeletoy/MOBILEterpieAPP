@@ -211,6 +211,8 @@ class TerpiezDetailPage extends StatelessWidget {
 }
 
 class FinderView extends StatefulWidget {
+
+  static bool _hasAskedPermission = false;
   const FinderView({super.key});
 
   @override
@@ -218,15 +220,17 @@ class FinderView extends StatefulWidget {
 }
 
 class _FinderViewState extends State<FinderView> {
-  final MapController  mapController = MapController();
+  final MapController mapController = MapController();
   final LatLng location = LatLng(38.9894, -76.9365);
-  
   StreamSubscription<Position>? _positionStreamSubscription;
 
   @override
   void initState() {
     super.initState();
-    _initLocationTracking();
+    
+    if (!FinderView._hasAskedPermission) {
+      _initLocationTracking();
+    }
   }
 
   @override
@@ -236,7 +240,9 @@ class _FinderViewState extends State<FinderView> {
   }
 
   Future<void> _initLocationTracking() async {
-    // Always request permission when Finder page is opened
+    // Set flag to true as we're about to ask for permission
+    FinderView._hasAskedPermission = true;
+    
     try {
       LocationPermission permission = await Geolocator.requestPermission();
       
@@ -250,7 +256,7 @@ class _FinderViewState extends State<FinderView> {
         return;
       }
 
-      // Check if services are enabled
+    
       bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         if (context.mounted) {
@@ -261,7 +267,7 @@ class _FinderViewState extends State<FinderView> {
         return;
       }
 
-      // If we get here, we have permission. Start location updates
+     
       _positionStreamSubscription = Geolocator.getPositionStream(
         locationSettings: const LocationSettings(
           accuracy: LocationAccuracy.high,
@@ -286,7 +292,7 @@ class _FinderViewState extends State<FinderView> {
         },
       );
 
-      // Get initial position
+      
       final position = await Geolocator.getCurrentPosition();
       if (mounted) {
         Provider.of<UserState>(context, listen: false).updateLocation(position);
@@ -328,7 +334,7 @@ Widget build(BuildContext context) {
                   urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                   userAgentPackageName: 'com.example.terpiez',
                 ),
-                // User location with blue circle
+                
                 if (currentLocation != null) 
                   CircleLayer(
                     circles: [
@@ -467,12 +473,12 @@ class UserState extends ChangeNotifier {
     Terpiez(
       name: 'Bug',
       icon: Icons.bug_report,
-      location: LatLng(38.9894, -76.9363),  // Slightly east of start
+      location: LatLng(38.9894, -76.9363),  
     ),
     Terpiez(
       name: 'Plane',
       icon: Icons.airplanemode_active,
-      location: LatLng(38.9893, -76.9366),  // Slightly southwest of start
+      location: LatLng(38.9893, -76.9366),  
     ),
   ];
 
@@ -484,7 +490,7 @@ class UserState extends ChangeNotifier {
   int get terpiezCaught => _terpiezCaught;
   DateTime get startDate => _startDate;
   String get userID => _userID;
-  double? get nearestDistance => _nearestDistance;  // Add this
+  double? get nearestDistance => _nearestDistance; 
   bool get isInCatchRange => _nearestDistance != null && _nearestDistance! <= 10;  
 
 
@@ -495,11 +501,11 @@ class UserState extends ChangeNotifier {
 
   void updateLocation(Position position) {
     _currentLocation = position;
-    _updateNearestTerpiez();  // Add this
+    _updateNearestTerpiez(); 
     notifyListeners();
   }
 
-  // Add this method
+  
   void _updateNearestTerpiez() {
     if (_currentLocation == null) return;
 
