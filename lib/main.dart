@@ -211,8 +211,6 @@ class TerpiezDetailPage extends StatelessWidget {
 }
 
 class FinderView extends StatefulWidget {
-
-  static bool _hasAskedPermission = false;
   const FinderView({super.key});
 
   @override
@@ -221,53 +219,62 @@ class FinderView extends StatefulWidget {
 
 class _FinderViewState extends State<FinderView> {
   final MapController mapController = MapController();
-  final LatLng location = LatLng(38.9894, -76.9365);
+  final LatLng defaultLocation = LatLng(38.9894, -76.9365);
   StreamSubscription<Position>? _positionStreamSubscription;
+  bool _hasRequestedPermission = false;
 
   @override
   void initState() {
     super.initState();
-    
-    if (!FinderView._hasAskedPermission) {
-      _initLocationTracking();
+    // Request permission immediately when the view is created
+    if (!_hasRequestedPermission) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _initLocationTracking();
+      });
     }
   }
 
-  @override
-  void dispose() {
-    _positionStreamSubscription?.cancel();
-    super.dispose();
-  }
-
   Future<void> _initLocationTracking() async {
-    // Set flag to true as we're about to ask for permission
-    FinderView._hasAskedPermission = true;
+    if (_hasRequestedPermission) return;
+    _hasRequestedPermission = true;
     
     try {
-      LocationPermission permission = await Geolocator.requestPermission();
+      // First check current permission status
+      LocationPermission permission = await Geolocator.checkPermission();
       
-      if (permission == LocationPermission.denied || 
-          permission == LocationPermission.deniedForever) {
-        if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Location permissions are needed to find Terpiez')),
-          );
+      // If permission is denied, request it
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        
+        if (permission == LocationPermission.denied || 
+            permission == LocationPermission.deniedForever) {
+          if (context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Location permissions are needed to find Terpiez'),
+                duration: Duration(seconds: 3),
+              ),
+            );
+          }
+          return;
         }
-        return;
       }
 
-    
+      // Check if location services are enabled
       bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Please enable location services')),
+            const SnackBar(
+              content: Text('Please enable location services'),
+              duration: Duration(seconds: 3),
+            ),
           );
         }
         return;
       }
 
-     
+      // Start listening to location updates
       _positionStreamSubscription = Geolocator.getPositionStream(
         locationSettings: const LocationSettings(
           accuracy: LocationAccuracy.high,
@@ -292,7 +299,7 @@ class _FinderViewState extends State<FinderView> {
         },
       );
 
-      
+      // Get initial position
       final position = await Geolocator.getCurrentPosition();
       if (mounted) {
         Provider.of<UserState>(context, listen: false).updateLocation(position);
@@ -326,7 +333,7 @@ Widget build(BuildContext context) {
               options: MapOptions(
                 initialCenter: currentLocation != null 
                   ? LatLng(currentLocation.latitude, currentLocation.longitude)
-                  : location,
+                  : defaultLocation,
                 initialZoom: 19.5,
               ),
               children: [
