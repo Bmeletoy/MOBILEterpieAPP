@@ -1,6 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'dart:ui' as ui show Path;
 
 
 void main() {
@@ -99,52 +105,8 @@ class MyApp extends StatelessWidget {
                     ],
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center, // Change to center to reduce excess space
-                  children: [
-                    const SizedBox(height: 20),
-                    const Text(
-                      'Terpiez Finder',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 24),
-                    ),
-                    Flexible(
-                      child: OrientationBuilder(
-                        builder: (context, orientation) {
-                          return GestureDetector(
-                            onTap: () {
-                              Provider.of<UserState>(context, listen: false).incrementTerpiez();
-                            },
-                          child: Flex(
-                            direction: orientation == Orientation.portrait
-                                ? Axis.vertical
-                                : Axis.horizontal,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              LayoutBuilder(
-                                builder: (context,  constraints) {
-                                  return Icon(
-                                    Icons.map,
-                                    size: constraints.biggest.shortestSide,
-                                    color: Colors.black,
-                                  );
-                                }
-                              ),
-                              const SizedBox(height: 10), // Reduce height here to make it tighter
-                              const Text(
-                                'Closest Terpiez: 123.0m',
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            ],
-                          ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+                const FinderView(),
+
                 ListView(
                   children: [
                     Builder(
@@ -248,36 +210,369 @@ class TerpiezDetailPage extends StatelessWidget {
   }
 }
 
+class FinderView extends StatefulWidget {
+  const FinderView({super.key});
+
+  @override
+  State<FinderView> createState()=> _FinderViewState();
+}
+
+class _FinderViewState extends State<FinderView> {
+  final MapController  mapController = MapController();
+  final LatLng location = LatLng(38.9894, -76.9365);
+  
+  StreamSubscription<Position>? _positionStreamSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _initLocationTracking();
+  }
+
+  @override
+  void dispose() {
+    _positionStreamSubscription?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _initLocationTracking() async {
+    // Always request permission when Finder page is opened
+    try {
+      LocationPermission permission = await Geolocator.requestPermission();
+      
+      if (permission == LocationPermission.denied || 
+          permission == LocationPermission.deniedForever) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Location permissions are needed to find Terpiez')),
+          );
+        }
+        return;
+      }
+
+      // Check if services are enabled
+      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Please enable location services')),
+          );
+        }
+        return;
+      }
+
+      // If we get here, we have permission. Start location updates
+      _positionStreamSubscription = Geolocator.getPositionStream(
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.high,
+          distanceFilter: 5,
+        ),
+      ).listen(
+        (Position position) {
+          if (mounted) {
+            Provider.of<UserState>(context, listen: false).updateLocation(position);
+            mapController.move(
+              LatLng(position.latitude, position.longitude),
+              mapController.camera.zoom,
+            );
+          }
+        },
+        onError: (error) {
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Location error: $error')),
+            );
+          }
+        },
+      );
+
+      // Get initial position
+      final position = await Geolocator.getCurrentPosition();
+      if (mounted) {
+        Provider.of<UserState>(context, listen: false).updateLocation(position);
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: $e')),
+        );
+      }
+    }
+  }
+
+
+@override
+Widget build(BuildContext context) {
+  // Get the current orientation
+  final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+  
+  // Create the map widget
+  final mapWidget = Expanded(
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: Consumer<UserState>(
+          builder: (context, userState, child) {
+            final currentLocation = userState.currentLocation;
+            return FlutterMap(
+              mapController: mapController,
+              options: MapOptions(
+                initialCenter: currentLocation != null 
+                  ? LatLng(currentLocation.latitude, currentLocation.longitude)
+                  : location,
+                initialZoom: 19.5,
+              ),
+              children: [
+                TileLayer(
+                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                  userAgentPackageName: 'com.example.terpiez',
+                ),
+                // User location with blue circle
+                if (currentLocation != null) 
+                  CircleLayer(
+                    circles: [
+                      CircleMarker(
+                        point: LatLng(currentLocation.latitude, currentLocation.longitude),
+                        radius: 8,
+                        color: Colors.blue.withOpacity(0.7),
+                        borderColor: Colors.white,
+                        borderStrokeWidth: 2,
+                      ),
+                      CircleMarker(
+                        point: LatLng(currentLocation.latitude, currentLocation.longitude),
+                        radius: 30,
+                        color: Colors.blue.withOpacity(0.1),
+                        borderColor: Colors.blue.withOpacity(0.3),
+                        borderStrokeWidth: 2,
+                      ),
+                    ],
+                  ),
+                // Terpiez markers
+                // MarkerLayer(
+                //   markers: userState.getTerpiez.map((terpiez) {
+                //     return Marker(
+                //       point: terpiez.location,
+                //       width: 40,
+                //       height: 40,
+                //       child: Icon(
+                //         terpiez.icon,
+                //         color: Colors.red,
+                //         size: 40,
+                //       ),
+                //     );
+                //   }).toList(),
+                // ),
+              ],
+            );
+          },
+        ),
+      ),
+    ),
+  );
+
+  // Create the info widget
+  final infoWidget = Consumer<UserState>(
+    builder: (context, userState, child) {
+      return Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Closest Terpiez: ${userState.nearestDistance?.toStringAsFixed(1) ?? "undefined"} m',
+              style: const TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: userState.isInCatchRange ? () => userState.incrementTerpiez() : null,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.pink.shade100,
+                foregroundColor: Colors.pink.shade900,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+              child: const Text('Catch it!'),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+
+  return Column(
+    children: [
+      const SizedBox(height: 20),
+      const Text(
+        'Terpiez Finder',
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 24),
+      ),
+      Expanded(
+        child: isLandscape
+            // Landscape layout
+            ? Row(
+                children: [
+                  // Map on the left
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.6, // 60% of width
+                    child: mapWidget,
+                  ),
+                  // Info on the right
+                  Expanded(
+                    child: Center(child: infoWidget),
+                  ),
+                ],
+              )
+            // Portrait layout
+            : Column(
+                children: [
+                  mapWidget,
+                  infoWidget,
+                ],
+              ),
+      ),
+    ],
+  );
+}
+}
+
+
+class Terpiez {
+  final String name;
+  final IconData icon;
+  final LatLng location;
+  bool caught;  
+
+  Terpiez({
+    required this.name,
+    required this.icon,
+    required this.location,
+    this.caught = false,  
+  });
+}
+
 
 class UserState extends ChangeNotifier {
-  int _terpiezCaught  = 0;
+  int _terpiezCaught = 0;
   final String _userID;
   DateTime _startDate;
+  Position? _currentLocation;
+  double? _nearestDistance;  
+  //Terpiez? _nearestTerpiez;  
+
+  final List<Terpiez> terpiez = [
+    Terpiez(
+      name: 'Bug',
+      icon: Icons.bug_report,
+      location: LatLng(38.9894, -76.9363),  // Slightly east of start
+    ),
+    Terpiez(
+      name: 'Plane',
+      icon: Icons.airplanemode_active,
+      location: LatLng(38.9893, -76.9366),  // Slightly southwest of start
+    ),
+  ];
 
   UserState() : _startDate = DateTime.now(), _userID = const Uuid().v4();
 
+  // Keep existing getters
+  Position? get currentLocation => _currentLocation;
+  List<Terpiez> get getTerpiez => terpiez;
   int get terpiezCaught => _terpiezCaught;
-
   DateTime get startDate => _startDate;
-
   String get userID => _userID;
+  double? get nearestDistance => _nearestDistance;  // Add this
+  bool get isInCatchRange => _nearestDistance != null && _nearestDistance! <= 10;  
 
-  void incrementTerpiez(){
-    _terpiezCaught++;
-    notifyListeners();
-  }
 
   int get numOfDaysPlayed {
     final currentDate = DateTime.now();
     return currentDate.difference(_startDate).inDays;
   }
 
+  void updateLocation(Position position) {
+    _currentLocation = position;
+    _updateNearestTerpiez();  // Add this
+    notifyListeners();
+  }
+
+  // Add this method
+  void _updateNearestTerpiez() {
+    if (_currentLocation == null) return;
+
+    double minDistance = double.infinity;
+
+    for (var terp in terpiez) {
+      if (!terp.caught) {  // Only consider uncaught Terpiez
+        final distance = Geolocator.distanceBetween(
+          _currentLocation!.latitude,
+          _currentLocation!.longitude,
+          terp.location.latitude,
+          terp.location.longitude,
+        );
+
+        if (distance < minDistance) {
+          minDistance = distance;
+        }
+      }
+    }
+
+    // If all Terpiez are caught, set distance to null
+    _nearestDistance = minDistance == double.infinity ? null : minDistance;
+    notifyListeners();
+  }
+
+  void incrementTerpiez() {
+    if (!isInCatchRange) return;
+
+    // Find the closest uncaught Terpiez
+    Terpiez? closestUncaught;
+    double minDistance = double.infinity;
+
+    for (var terp in terpiez) {
+      if (!terp.caught) {
+        final distance = Geolocator.distanceBetween(
+          _currentLocation!.latitude,
+          _currentLocation!.longitude,
+          terp.location.latitude,
+          terp.location.longitude,
+        );
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestUncaught = terp;
+        }
+      }
+    }
+
+    // If we found an uncaught Terpiez in range
+    if (closestUncaught != null && minDistance <= 10) {
+      closestUncaught.caught = true;
+      _terpiezCaught++;
+      _updateNearestTerpiez();  // Update distances after catching
+      notifyListeners();
+    }
+
+ 
+  // void incrementTerpiez() {
+  //   if (isInCatchRange) {  // Only increment if in range
+  //     _terpiezCaught++;
+  //     notifyListeners();
+  //   }
+  // }
+
+  
 
 
 
 
 
 
+
+  }
 }
 
 
@@ -339,7 +634,7 @@ class _PaintBackground extends CustomPainter {
 
     
     for (double x = -stripeWidth * 2; x < size.width + stripeWidth * 2; x += stripeWidth * 2) {
-      Path path = Path();
+      ui.Path path = ui.Path();
       path.moveTo(x - offset, 0);
       path.lineTo(x + stripeWidth - offset, 0);
       path.lineTo(x + stripeWidth * 2 - offset, size.height);
