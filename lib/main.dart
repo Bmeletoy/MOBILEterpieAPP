@@ -75,6 +75,7 @@ void main() async {
       );
       final userState = UserState();
       await userState.initialize(redisService);
+      userState.clearCaughtLocations();
 
       runApp(
         ChangeNotifierProvider.value(
@@ -321,13 +322,14 @@ class TerpiezDetailPage extends StatelessWidget {
                            ),
                            MarkerLayer(
                              markers: [
-                               Marker(
-                                 point: terp.location,
-                                 width: 30,
-                                 height: 30,
-                                 child: const Icon(Icons.location_on, color: Colors.red),
-                               ),
-                             ],
+                              for (var location in terp.caughtLocations)
+                                Marker(
+                                  point: location,
+                                  width: 30,
+                                  height: 30,
+                                  child: const Icon(Icons.location_on, color: Colors.red),
+                                ),
+                            ],
                            ),
                          ],
                        ),
@@ -484,29 +486,29 @@ Widget build(BuildContext context) {
                   userAgentPackageName: 'com.example.terpiez',
                 ),
                 MarkerLayer(
-                  markers: userState.getTerpiez
-                    .where((terp) => !terp.caught && currentLocation != null)
-                    .take(10)
-                    .map((terp) {
-                      final distance = Geolocator.distanceBetween(
-                        currentLocation!.latitude,
-                        currentLocation!.longitude,
-                        terp.location.latitude,
-                        terp.location.longitude,
-                      );
-                      if (distance <= 10) {
-                        return Marker(
-                          point: terp.location,
-                          width: 30,
-                          height: 30,
-                          child: const Icon(Icons.place, color: Colors.black, size: 30),
-                        );
-                      }
-                      return null;
-                    })
-                    .where((marker) => marker != null)
-                    .cast<Marker>()
-                    .toList(),
+                 markers: currentLocation != null 
+                  ? [
+                      ...userState.getTerpiez
+                        .where((terp) => !terp.caught)
+                        .map((terp) {
+                          final distance = Geolocator.distanceBetween(
+                            currentLocation.latitude,
+                            currentLocation.longitude,
+                            terp.location.latitude,
+                            terp.location.longitude,
+                          );
+                          return distance <= 10 ? Marker(
+                            point: terp.location,
+                            width: 30,
+                            height: 30,
+                            child: const Icon(Icons.place, color: Colors.black, size: 30),
+                          ) : null;
+                        })
+                        .where((marker) => marker != null)
+                        .cast<Marker>()
+                        .take(1),
+                    ]
+                  : [],
                 ),
                 
                 if (currentLocation != null) 
@@ -758,6 +760,12 @@ Future<void> initialize(RedisService redisService) async {
 
     double minDistance = double.infinity;
     Terpiez? closestTerpiez;
+    var uncaughtTerpiez = terpiez.where((terp) => !terp.caught).toList();
+  if (uncaughtTerpiez.isEmpty) {
+    _nearestDistance = null;
+    notifyListeners();
+    return;
+  }
 
     for (var terp in terpiez) {
       if (!terp.caught) {  // Only consider uncaught Terpiez
@@ -767,15 +775,29 @@ Future<void> initialize(RedisService redisService) async {
           terp.location.latitude,
           terp.location.longitude,
         );
+          // for (var terp in terpiez.where((t) => !t.caught)) {
+          //   final distance = Geolocator.distanceBetween(
+          //     _currentLocation!.latitude,
+          //     _currentLocation!.longitude,
+          //     terp.location.latitude,
+          //     terp.location.longitude,
+          //   );
+          //   debugPrint('Distance to ${terp.name}: $distance, Caught: ${terp.caught}');
+          
+                  
+        
 
         if (distance < minDistance) {
           minDistance = distance;
           closestTerpiez = terp;
         }
+         //R }
       }
     }
+
     // If all Terpiez are caught, set distance to null
    _nearestDistance = minDistance == double.infinity ? null : minDistance;
+    notifyListeners();
   //debugPrint('Updated nearest distance: $_nearestDistance');
   if (closestTerpiez != null) {
    // debugPrint('Closest Terpiez is ${closestTerpiez.name} at ${_nearestDistance}m');
@@ -785,6 +807,13 @@ Future<void> initialize(RedisService redisService) async {
   
   notifyListeners();
   }
+
+  void clearCaughtLocations() {
+  for (var terp in terpiez) {
+    terp.caughtLocations = [terp.location];
+  }
+  notifyListeners();
+}
 
  void incrementTerpiez(RedisService redisService) async {
   debugPrint('Starting incrementTerpiez');
@@ -840,13 +869,23 @@ Future<void> initialize(RedisService redisService) async {
           closestUncaught.fullImagePath = fullImageFile.path;
           closestUncaught.stats = details['stats'];
           closestUncaught.description = details['description'];
+          closestUncaught.caughtLocations.add(LatLng(
+            _currentLocation!.latitude,
+            _currentLocation!.longitude
+          ));
+
+          debugPrint('Terp Location: ${closestUncaught.location.latitude}, ${closestUncaught?.location.longitude}');
+          debugPrint('Current Location: ${_currentLocation?.latitude}, ${_currentLocation?.longitude}');
+          debugPrint('Caught status before: ${closestUncaught.caught}');
+
         } catch (e) {
           debugPrint('Failed to download Terpiez details: $e');
       }
 
         }
       }
-      _updateNearestTerpiez();  // Update distances after catching
+      _updateNearestTerpiez();
+        // Update distances after catching
       notifyListeners();
 
       await saveUserStateToRedis(redisService);
