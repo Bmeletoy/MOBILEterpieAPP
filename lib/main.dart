@@ -629,6 +629,7 @@ class Terpiez {
   final String name;
   final IconData icon;
   final LatLng location;
+  final String terpiezId;
   bool caught;  
   String? thumbnailPath;
   String? fullImagePath;
@@ -642,6 +643,7 @@ class Terpiez {
     required this.name,
     required this.icon,
     required this.location,
+    required this.terpiezId,
     this.caught = false,  
     this.thumbnailPath,
     this.fullImagePath,
@@ -686,14 +688,15 @@ class UserState extends ChangeNotifier {
   Position? get currentLocation => _currentLocation;
   List<Terpiez> get getTerpiez {
   debugPrint('Getting terpiez list. Count: ${terpiez.length}');
-  for (var terp in terpiez) {
-    debugPrint('Terpiez: ${terp.name}, Thumbnail: ${terp.thumbnailPath}');
-  }
+  // for (var terp in terpiez) {
+  //   debugPrint('Terpiez: ${terp.name}, Thumbnail: ${terp.thumbnailPath}');
+  // }
+  
   return terpiez;
 }
 
 Future<void> initialize(RedisService redisService) async {
-    debugPrint('Starting UserState initialization');
+    //debugPrint('Starting UserState initialization');
     try {
       await fetchTerpiezFromRedis(redisService);
       debugPrint('Successfully initialized UserState with Redis data');
@@ -721,23 +724,27 @@ Future<void> initialize(RedisService redisService) async {
   }
 
    Future<File> _saveToFile(Uint8List bytes, String filename) async {
-    try{
-      final directory = await getApplicationDocumentsDirectory();
-      final terpiezDir = Directory('${directory.path}/terpiez_images');
+  try {
+    debugPrint('Starting to save file...');
+    final directory = await getApplicationDocumentsDirectory();
+    final directory2 = await getExternalStorageDirectory();
+    debugPrint('Got directory: ${directory.path}');
+    final file = File('${directory.path}/$filename');
+    debugPrint('Got directory2: ${directory2?.path}');
+    final file2 = File('${directory2?.path}/$filename');
 
-      if(!await terpiezDir.exists()){
-        await terpiezDir.create(recursive: true);
-      }
-
-      final file = File('${terpiezDir.path}/filename');
-      await file.writeAsBytes(bytes);
-      return file;
-    } catch (e) {
-      debugPrint('Error saving file: $e');
-      throw Exception('Failed to save file: $filename');
-    }
-    
-    }
+    await directory.create(recursive: true);
+    debugPrint('Created file object: ${file.path}');
+    await file.writeAsBytes(bytes);
+     debugPrint('Created file2 object: ${file2.path}');
+    await file2.writeAsBytes(bytes);
+    debugPrint('Written bytes to file: ${file.path}');
+    return file;
+  } catch (e) {
+    debugPrint('Error saving file: $e');
+    throw Exception('Failed to save file: $filename');
+  }
+}
 
   
   void _updateNearestTerpiez() {
@@ -746,8 +753,8 @@ Future<void> initialize(RedisService redisService) async {
       return;
     }
 
-    debugPrint('Updating nearest Terpiez. Current location: ${_currentLocation!.latitude}, ${_currentLocation!.longitude}');
-    debugPrint('Number of Terpiez to check: ${terpiez.length}');
+   // debugPrint('Updating nearest Terpiez. Current location: ${_currentLocation!.latitude}, ${_currentLocation!.longitude}');
+    //debugPrint('Number of Terpiez to check: ${terpiez.length}');
 
     double minDistance = double.infinity;
     Terpiez? closestTerpiez;
@@ -769,20 +776,24 @@ Future<void> initialize(RedisService redisService) async {
     }
     // If all Terpiez are caught, set distance to null
    _nearestDistance = minDistance == double.infinity ? null : minDistance;
-  debugPrint('Updated nearest distance: $_nearestDistance');
+  //debugPrint('Updated nearest distance: $_nearestDistance');
   if (closestTerpiez != null) {
-    debugPrint('Closest Terpiez is ${closestTerpiez.name} at ${_nearestDistance}m');
+   // debugPrint('Closest Terpiez is ${closestTerpiez.name} at ${_nearestDistance}m');
   } else {
-    debugPrint('No uncaught Terpiez found');
+   // debugPrint('No uncaught Terpiez found');
   }
   
   notifyListeners();
   }
 
-  void incrementTerpiez(RedisService redisService) async {
-    if (!isInCatchRange) return;
+ void incrementTerpiez(RedisService redisService) async {
+  debugPrint('Starting incrementTerpiez');
+    if (!isInCatchRange) {
+      debugPrint('Not in catch range');
+      return;
+    }
 
-    // Find the closest uncaught Terpiez
+    debugPrint('Finding closest uncaught Terpiez');
     Terpiez? closestUncaught;
     double minDistance = double.infinity;
 
@@ -804,22 +815,26 @@ Future<void> initialize(RedisService redisService) async {
 
     // If we found an uncaught Terpiez in range
     if (closestUncaught != null && minDistance <= 10) {
-      closestUncaught.caught = true;
+      debugPrint('found closest Terpiez: {$closestUncaught}');
       _terpiezCaught++;
-
+      debugPrint('Starting place to save information:');
       if(!terpiez.any((terp) => terp.name == closestUncaught!.name && terp.caught)){
+        closestUncaught.caught = true;
+        debugPrint('Do we Get Here?');
         try {
-          final details = await redisService.getTerpiezDetails(closestUncaught.name);
+          final directory = await getApplicationDocumentsDirectory();
+          //final terpiezDir = Directory('${directory.path}/Android/data/com.example.terpiez');
+          //await terpiezDir.create(recursive: true);
+          debugPrint('Getting information to save');
+          final details = await redisService.getTerpiezDetails(closestUncaught.terpiezId);
           final thumbnailBase64 = await redisService.getTerpiezImage(details['thumbnail']);
           final fullImageBase64 = await redisService.getTerpiezImage(details['image']);
 
-
-          final decodedThumbnail = base64Decode(thumbnailBase64);
-          final decodedFullImage = base64Decode(fullImageBase64);
-
-          // Save locally
-          final thumbnailFile = await _saveToFile(decodedThumbnail, '${closestUncaught.name}_thumbnail.png');
-          final fullImageFile = await _saveToFile(decodedFullImage, '${closestUncaught.name}_full.png');
+          debugPrint('About to save thumbnail for ${closestUncaught.name}');
+          final thumbnailFile = await _saveToFile(base64Decode(thumbnailBase64), '${closestUncaught.name}_thumbnail.png');
+          debugPrint('About to save full image for ${closestUncaught.name}');
+          final fullImageFile = await _saveToFile(base64Decode(fullImageBase64), '${closestUncaught.name}_full.png');
+          debugPrint('Files saved successfully');
 
           closestUncaught.thumbnailPath = thumbnailFile.path;
           closestUncaught.fullImagePath = fullImageFile.path;
@@ -827,7 +842,7 @@ Future<void> initialize(RedisService redisService) async {
           closestUncaught.description = details['description'];
         } catch (e) {
           debugPrint('Failed to download Terpiez details: $e');
-        }
+      }
 
         }
       }
@@ -836,6 +851,8 @@ Future<void> initialize(RedisService redisService) async {
 
       await saveUserStateToRedis(redisService);
     }
+
+
 
   Future<void> loadCaughtTerpiezFromRedis(RedisService redisService) async {
   try {
@@ -860,9 +877,9 @@ Future<void> initialize(RedisService redisService) async {
   Future<void> fetchTerpiezFromRedis(RedisService redisService) async {
   
   try {
-    debugPrint('Starting to fetch Terpiez from Redis');
+    //debugPrint('Starting to fetch Terpiez from Redis');
     final locations = await redisService.getLocations();
-    debugPrint('Raw locations data: $locations');
+    //debugPrint('Raw locations data: $locations');
     
     // Clear existing terpiez list
     terpiez.clear();
@@ -878,40 +895,43 @@ Future<void> initialize(RedisService redisService) async {
         
         if (details['thumbnail'] != null) {
           debugPrint('Found thumbnail key: ${details['thumbnail']}');
-          final thumbnailData = await redisService.getTerpiezImage(details['thumbnail']);
+          //final thumbnailData = await redisService.getTerpiezImage(details['thumbnail']);
           
           // Save thumbnail to file
-          final directory = await getApplicationDocumentsDirectory();
-          final terpiezDir = Directory('${directory.path}/terpiez_images');
-          await terpiezDir.create(recursive: true);
+          //final directory = await getApplicationDocumentsDirectory();
+          //final terpiezDir = Directory('${directory.path}/im');
+          //await terpiezDir.create(recursive: true);
           
-          final thumbnailPath = '${terpiezDir.path}/${details['name']}_thumbnail.png';
-          final thumbnailFile = File(thumbnailPath);
-          await thumbnailFile.writeAsBytes(base64Decode(thumbnailData));
-          debugPrint('Saved thumbnail to: $thumbnailPath');
+          
+          //final thumbnailPath = await _saveToFile(bytes, filename)
+          //final thumbnailFile = File(thumbnailPath);
+          //await thumbnailFile.writeAsBytes(base64Decode(thumbnailData));
+          //debugPrint('Saved thumbnail to: $thumbnailPath');
           
           // Create new Terpiez instance
           final newTerpiez = Terpiez(
             name: details['name'],
             icon: Icons.catching_pokemon,
+            terpiezId: id,
             location: LatLng(
               double.parse(location['lat'].toString()),
               double.parse(location['lon'].toString()),
             ),
-            thumbnailPath: thumbnailPath,
+            imageKey: details['image'],
+            thumbnailKey: details['thumbnail'],
             stats: Map<String, dynamic>.from(details['stats'] ?? {}),
             description: details['description'] ?? '',
           );
 
-          if (details['image'] != null) {
-            final imageData = await redisService.getTerpiezImage(details['image']);
-            final fullImagePath = '${terpiezDir.path}/${details['name']}_full.png';
-            final imageFile = File(fullImagePath);
-            await imageFile.writeAsBytes(base64Decode(imageData));
-            debugPrint('Saved full image to: $fullImagePath');
+          // if (details['image'] != null) {
+          //   final imageData = await redisService.getTerpiezImage(details['image']);
+          //   final fullImagePath = '${terpiezDir.path}/${details['name']}_full.png';
+          //   final imageFile = File(fullImagePath);
+          //   await imageFile.writeAsBytes(base64Decode(imageData));
+          //   debugPrint('Saved full image to: $fullImagePath');
             
-            newTerpiez.fullImagePath = fullImagePath;
-          }
+          //   newTerpiez.fullImagePath = fullImagePath;
+          // }
           
           terpiez.add(newTerpiez);
           debugPrint('Successfully added Terpiez: ${newTerpiez.name}');
@@ -932,6 +952,9 @@ Future<void> initialize(RedisService redisService) async {
     rethrow;
   }
   }
+
+
+
     Future<void> saveUserStateToRedis(RedisService redisService) async {
       try {
         final data = {
@@ -1095,9 +1118,9 @@ class RedisService {
       try {
         final conn = RedisConnection();
         _cmd = await conn.connect(_host, _port);
-        debugPrint('Attempting to authenticate with Redis...');
+       // debugPrint('Attempting to authenticate with Redis...');
         await _cmd!.send_object(['AUTH', username, password]);
-        debugPrint('Successfully authenticated with Redis');
+       // debugPrint('Successfully authenticated with Redis');
     } catch (e){
       debugPrint('Redis connection error: $e');
       throw Exception ('Failed to connect: $e');
@@ -1114,8 +1137,9 @@ class RedisService {
       await connect();
       debugPrint('Fetching locations from Redis...');
       final result = await _cmd!.send_object(['JSON.GET', 'locations', '.']);
-      debugPrint('Raw locations response: $result');
+     // debugPrint('Raw locations response: $result');
       if (result != null) {
+        debugPrint('Fetched Locations from Redis');
         final List<dynamic> decoded = jsonDecode(result.toString());
         return decoded.map((item) => Map<String, dynamic>.from(item)).toList();
       }
@@ -1129,10 +1153,11 @@ class RedisService {
   Future<Map<String, dynamic>> getTerpiezDetails(String id) async {
     try {
       await connect();
-      debugPrint('Fetching details for Terpiez ID: $id');
+     // debugPrint('Fetching details for Terpiez ID: $id');
       final result = await _cmd!.send_object(['JSON.GET', 'terpiez', '.$id']);
-      debugPrint('Raw Terpiez details: $result');
+      //debugPrint('Raw Terpiez details: $result');
       if (result != null) {
+        debugPrint('Raw Terpiez not null');
         return Map<String, dynamic>.from(jsonDecode(result.toString()));
       }
       throw Exception('No details found for Terpiez ID: $id');
@@ -1182,6 +1207,7 @@ class RedisService {
         '.$uuid',
         jsonEncode(data)
       ]);
+
       debugPrint('Successfully updated user data');
     } catch (e) {
       debugPrint('Error updating user data: $e');
@@ -1283,3 +1309,5 @@ class _LoginDialogState extends State<LoginDialog> {
     );
   }
 }
+
+//9c78c8ac89a64d08a2745e379cd682f3
