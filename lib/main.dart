@@ -768,33 +768,26 @@ Future<void> initialize(RedisService redisService) async {
   }
 
     for (var terp in terpiez) {
-      if (!terp.caught) {  // Only consider uncaught Terpiez
+      if (!terp.caught || !terp.caughtLocations.any((loc) => 
+      Geolocator.distanceBetween(
+        loc.latitude, 
+        loc.longitude,
+        _currentLocation!.latitude,
+        _currentLocation!.longitude
+      ) < 10)) {  // Only consider uncaught Terpiez
         final distance = Geolocator.distanceBetween(
           _currentLocation!.latitude,
           _currentLocation!.longitude,
           terp.location.latitude,
           terp.location.longitude,
         );
-          // for (var terp in terpiez.where((t) => !t.caught)) {
-          //   final distance = Geolocator.distanceBetween(
-          //     _currentLocation!.latitude,
-          //     _currentLocation!.longitude,
-          //     terp.location.latitude,
-          //     terp.location.longitude,
-          //   );
-          //   debugPrint('Distance to ${terp.name}: $distance, Caught: ${terp.caught}');
-          
-                  
-        
 
         if (distance < minDistance) {
           minDistance = distance;
           closestTerpiez = terp;
         }
-         //R }
       }
     }
-
     // If all Terpiez are caught, set distance to null
    _nearestDistance = minDistance == double.infinity ? null : minDistance;
     notifyListeners();
