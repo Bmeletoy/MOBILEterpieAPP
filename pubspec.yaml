@@ -41,6 +41,7 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   shared_preferences: ^2.2.2
   redis: ^4.0.0
+  sensors_plus: ^4.0.0
 
 
 

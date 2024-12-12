@@ -14,19 +14,34 @@ import 'dart:convert';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:math' show sqrt;
+import 'package:sensors_plus/sensors_plus.dart';
 
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> navigatorKey2 = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final hasLoggedIn = await ManageCredentials.hasLoggedIn();
 
 
+  void runWithMessenger(Widget app) {
+    runApp(MaterialApp(
+      home: Builder(
+        builder: (context) => ScaffoldMessenger(
+          child: app,
+        ),
+      ),
+    ));
+  }
+
  
   if (!hasLoggedIn) {
-    runApp(
-      MaterialApp(
+    runWithMessenger(
+      ScaffoldMessenger(
+        key: GlobalKey<ScaffoldMessengerState>(),
+        child: MaterialApp(
         navigatorKey: navigatorKey,
         home: Builder(
           builder: (context) {
@@ -65,6 +80,8 @@ void main() async {
           },
         ),
       ),
+      ),
+
     );
   } else {
     final credentials = await ManageCredentials.getCredentials();
@@ -77,10 +94,13 @@ void main() async {
       await userState.initialize(redisService);
       userState.clearCaughtLocations();
 
-      runApp(
-        ChangeNotifierProvider.value(
+      runWithMessenger(
+        ScaffoldMessenger(
+          key: GlobalKey<ScaffoldMessengerState>(),
+          child: ChangeNotifierProvider.value(
           value: userState,
           child: const MyApp(),
+        ),
         ),
       );
     }
@@ -122,12 +142,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final userState = Provider.of<UserState>(context);
+    return  MaterialApp(
+      navigatorKey: navigatorKey2,
+      scaffoldMessengerKey: userState.scaffoldKey,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      builder: (context, child){
+        return Scaffold(
+          body: child,
+        );
+      },
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -240,7 +268,8 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-      ),
+      )
+     // ),
     );
   }
 }
@@ -366,16 +395,125 @@ class _FinderViewState extends State<FinderView> {
   StreamSubscription<Position>? _positionStreamSubscription;
   bool _hasRequestedPermission = false;
 
+  StreamSubscription<AccelerometerEvent>? _accelerometerSubscription;
+  DateTime? _lastShake;
+  static const double _shakeThreshold = 10.0;
+  static const Duration _cooldown = Duration(milliseconds: 500);
+
   @override
   void initState() {
     super.initState();
-    // Request permission immediately when the view is created
+    _initAccelerometer();
     if (!_hasRequestedPermission) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         _initLocationTracking();
       });
     }
   }
+
+  void _initAccelerometer() {
+  _accelerometerSubscription = accelerometerEventStream().listen((event) {
+    final acceleration = sqrt(
+      event.x * event.x + 
+      event.y * event.y + 
+      event.z * event.z
+    );
+   
+    if (acceleration > _shakeThreshold) {
+      final now = DateTime.now();
+      if (_lastShake == null || now.difference(_lastShake!) > _cooldown) {
+        _lastShake = now;
+          debugPrint('Shake passed cooldown. Triggering _handleShake');
+        _handleShake();
+      }
+    }
+  });
+}
+
+Future<void> _handleShake() async {
+  final userState = Provider.of<UserState>(context, listen: false);
+  
+  // Visual feedback
+  if (mounted) {
+    debugPrint("Trying to catch");
+    ScaffoldMessenger.of(context).clearSnackBars();  // Clear any existing snackbars
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          !userState.isConnected 
+            ? 'Cannot catch while disconnected' 
+            : !userState.isInCatchRange 
+              ? 'No Terpiez in range' 
+              : 'Attempting to catch...'
+        ),
+        duration: const Duration(seconds: 5),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+   debugPrint('Connected: ${userState.isConnected}, In Catch Range: ${userState.isInCatchRange}');
+
+  // Early return if conditions aren't met
+  if (!userState.isConnected) {
+    debugPrint('Cannot catch: Not connected to Redis');
+    return;
+  }
+  
+  if (!userState.isInCatchRange) {
+    debugPrint('Cannot catch: No Terpiez in range');
+    return;
+  }
+
+  try {
+    final credentials = await ManageCredentials.getCredentials();
+    if (credentials['username'] != null && credentials['password'] != null) {
+      final redisService = RedisService(
+        username: credentials['username']!,
+        password: credentials['password']!,
+      );
+      
+      // Attempt to catch
+      final caughtTerpiez = await userState.incrementTerpiez(redisService);
+      
+      // Show catch dialog if successful
+      if (caughtTerpiez != null && mounted) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,  // Force user to use dismiss button
+          builder: (context) => CatchDialog(terpiez: caughtTerpiez),
+        );
+      }
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Redis credentials not found. Please log in again.'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+    }
+  } catch (e) {
+    debugPrint('Error in _handleShake: $e');
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error catching Terpiez: ${e.toString()}'),
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    }
+  }
+}
+
+@override
+  void dispose() {
+    _positionStreamSubscription?.cancel();
+    _accelerometerSubscription?.cancel();
+    super.dispose();
+  }
+
 
   Future<void> _initLocationTracking() async {
     if (_hasRequestedPermission) return;
@@ -392,6 +530,8 @@ class _FinderViewState extends State<FinderView> {
         if (permission == LocationPermission.denied || 
             permission == LocationPermission.deniedForever) {
           if (context.mounted) {
+            //ScaffoldMessenger.of(context).clearSnackBars();
+            //ScaffoldMessenger.of(context).showSnackBar(
             final userState = Provider.of<UserState>(context, listen: false);
             final credentials = await ManageCredentials.getCredentials();
               if (credentials['username'] != null && credentials['password'] != null) {
@@ -409,6 +549,7 @@ class _FinderViewState extends State<FinderView> {
       bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         if (context.mounted) {
+            ScaffoldMessenger.of(context).clearSnackBars();
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Please enable location services'),
@@ -457,6 +598,35 @@ class _FinderViewState extends State<FinderView> {
       }
     }
   }
+
+
+  Widget _buildCatchIndicator() {
+  return provider.Consumer<UserState>(
+    builder: (context, userState, child) {
+      final bool inRange = userState.isInCatchRange;
+      return AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: inRange ? Colors.green.withOpacity(0.3) : Colors.red.withOpacity(0.1),
+          border: Border.all(
+            color: inRange ? Colors.green : Colors.red,
+            width: 2,
+          ),
+        ),
+        child: Center(
+          child: Icon(
+            Icons.catching_pokemon,
+            color: inRange ? Colors.green : Colors.red,
+            size: 40,
+          ),
+        ),
+      );
+    },
+  );
+}
 
 
 @override
@@ -548,81 +718,122 @@ Widget build(BuildContext context) {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Closest Terpiez: ${userState.nearestDistance?.toStringAsFixed(1) ?? "undefined"} m',
-              style: const TextStyle(fontSize: 18),
+              'Closest Terpiez: ${userState.nearestDistance == null ? "undefined" : "${userState.nearestDistance!.toStringAsFixed(1)}m"}',
+              style: TextStyle(
+                fontSize: 18,
+                color: userState.isInCatchRange ? Colors.green : Colors.black,
+              ),
             ),
             const SizedBox(height: 8),
-            ElevatedButton(
-              onPressed: userState.isInCatchRange ? () async {
-          // Retrieve stored credentials
-                      final credentials = await ManageCredentials.getCredentials();
-                      if (credentials['username'] != null && credentials['password'] != null) {
-                        final redisService = RedisService(
-                          username: credentials['username']!,
-                          password: credentials['password']!,
-                        );
-
-                        // Call incrementTerpiez with RedisService
-                        userState.incrementTerpiez(redisService);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Redis credentials not found. Please log in again.'),
-                          ),
-                        );
-                      }
-                    }
-                  : null,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.pink.shade100,
-                foregroundColor: Colors.pink.shade900,
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+            _buildCatchIndicator(),
+            if (userState.isInCatchRange)
+              const Padding(
+                padding: EdgeInsets.only(top: 8.0),
+                child: Text(
+                  'Shake to catch!',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.green,
+                  ),
                 ),
               ),
-              child: const Text('Catch it!'),
-            ),
           ],
         ),
       );
     },
   );
 
-  return Column(
-    children: [
-      const SizedBox(height: 20),
-      const Text(
-        'Terpiez Finder',
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 24),
-      ),
-      Expanded(
-        child: isLandscape
-            // Landscape layout
-            ? Row(
-                children: [
-                  // Map on the left
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.6, // 60% of width
-                    child: mapWidget,
+final mapArea = Padding(
+  padding: const EdgeInsets.all(8.0),
+  child: ClipRRect(
+    borderRadius: BorderRadius.circular(8.0),
+    child: provider.Consumer<UserState>(
+      builder: (context, userState, child) {
+        final currentLocation = userState.currentLocation;
+        return FlutterMap(
+          mapController: mapController,
+          options: MapOptions(
+            initialCenter: currentLocation != null 
+              ? LatLng(currentLocation.latitude, currentLocation.longitude)
+              : defaultLocation,
+            initialZoom: 19.5,
+          ),
+          children: [
+            TileLayer(
+              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+              userAgentPackageName: 'com.example.terpiez',
+            ),
+            MarkerLayer(
+              markers: currentLocation != null 
+                ? [
+                    ...userState.getTerpiez
+                      .where((terp) => !terp.caught)
+                      .map((terp) {
+                        final distance = Geolocator.distanceBetween(
+                          currentLocation.latitude,
+                          currentLocation.longitude,
+                          terp.location.latitude,
+                          terp.location.longitude,
+                        );
+                        return distance <= 10 ? Marker(
+                          point: terp.location,
+                          width: 30,
+                          height: 30,
+                          child: const Icon(Icons.place, color: Colors.black, size: 30),
+                        ) : null;
+                      })
+                      .where((marker) => marker != null)
+                      .cast<Marker>()
+                      .take(1),
+                  ]
+                : [],
+            ),
+            if (currentLocation != null) 
+              CircleLayer(
+                circles: [
+                  CircleMarker(
+                    point: LatLng(currentLocation.latitude, currentLocation.longitude),
+                    radius: 8,
+                    color: Colors.blue.withOpacity(0.7),
+                    borderColor: Colors.white,
+                    borderStrokeWidth: 2,
                   ),
-                  // Info on the right
-                  Expanded(
-                    child: Center(child: infoWidget),
+                  CircleMarker(
+                    point: LatLng(currentLocation.latitude, currentLocation.longitude),
+                    radius: 30,
+                    color: Colors.blue.withOpacity(0.1),
+                    borderColor: Colors.blue.withOpacity(0.3),
+                    borderStrokeWidth: 2,
                   ),
-                ],
-              )
-            // Portrait layout
-            : Column(
-                children: [
-                  mapWidget,
-                  infoWidget,
                 ],
               ),
+          ],
+        );
+      },
+    ),
+  ),
+);
+
+  return LayoutBuilder(
+  builder: (context, constraints) => Column(
+    children: [
+      Text('Terpiez Finder', style: TextStyle(fontSize: 18)),
+      Expanded(
+        child: isLandscape
+          ? Row(
+              children: [
+                Flexible(flex: 3, child: mapArea),
+                Flexible(flex: 2, child: FittedBox(child: infoWidget)),
+              ],
+            )
+          : Column(children: [
+              Expanded(child: mapArea),
+              infoWidget
+            ]),
       ),
     ],
-  );
+  ),
+);
 }
 }
 
@@ -666,6 +877,61 @@ class Terpiez {
   int get hashCode => name.hashCode;
 }
 
+class CatchDialog extends StatelessWidget {
+  final Terpiez terpiez;
+
+  const CatchDialog({super.key, required this.terpiez});
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(6.6),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text(
+              'You caught a Terpiez!',
+              style: TextStyle(fontSize: 15),
+            ),
+            // const SizedBox(height: 20),
+            if (terpiez.fullImagePath != null)
+              Image.file(
+                File(terpiez.fullImagePath!),
+                height: 200,
+                width: 200,
+                fit: BoxFit.contain,
+              ),
+            Text(
+              terpiez.name,
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.pink[50],
+                foregroundColor: Colors.pink[900],
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Great!'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
 
 class UserState extends ChangeNotifier {
   int _terpiezCaught = 0;
@@ -680,6 +946,12 @@ class UserState extends ChangeNotifier {
 
   List<Terpiez> terpiez = [];
 
+  bool _isConnected = false;
+  RedisService? _redisService;
+  final GlobalKey<ScaffoldMessengerState> scaffoldKey = GlobalKey<ScaffoldMessengerState>();
+  
+  bool get isConnected => _isConnected;
+
   UserState() : _startDate = DateTime.now(), _userID = const Uuid().v4(){
     debugPrint('Initializing UserState with UUID: $_userID');
   }
@@ -689,15 +961,36 @@ class UserState extends ChangeNotifier {
   // Keep existing getters
   Position? get currentLocation => _currentLocation;
   List<Terpiez> get getTerpiez {
-  debugPrint('Getting terpiez list. Count: ${terpiez.length}');
+    debugPrint('Getting terpiez list. Count: ${terpiez.length}');
   // for (var terp in terpiez) {
   //   debugPrint('Terpiez: ${terp.name}, Thumbnail: ${terp.thumbnailPath}');
   // }
   
-  return terpiez;
+    return terpiez;
+  }
+
+  void _handleConnectionChange(bool isConnected) {
+    if (_isConnected != isConnected) {
+      _isConnected = isConnected;
+      debugPrint('Connection status changed: $isConnected');
+      if (navigatorKey2.currentContext != null) {
+      ScaffoldMessenger.of(navigatorKey2.currentContext!).clearSnackBars(); // Clear existing SnackBars
+      ScaffoldMessenger.of(navigatorKey2.currentContext!).showSnackBar(
+        SnackBar(
+          content: Text(isConnected ? 'Connection restored' : 'Lost connection to Redis server'),
+          duration: Duration(seconds: 5),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+    }
+    notifyListeners();
+  }
 }
 
 Future<void> initialize(RedisService redisService) async {
+  _redisService = redisService;
+  _isConnected = redisService.isConnected;
+  redisService.onConnectionStatusChanged = _handleConnectionChange;
     //debugPrint('Starting UserState initialization');
     try {
       await fetchTerpiezFromRedis(redisService);
@@ -808,11 +1101,18 @@ Future<void> initialize(RedisService redisService) async {
   notifyListeners();
 }
 
- void incrementTerpiez(RedisService redisService) async {
+ Future<Terpiez?> incrementTerpiez(RedisService redisService) async {
+  if(!_isConnected){
+     scaffoldKey.currentState?.showSnackBar(
+      const SnackBar(content: Text('Cannot catch while disconnected'))
+    );
+    return null;
+
+  }
   debugPrint('Starting incrementTerpiez');
     if (!isInCatchRange) {
       debugPrint('Not in catch range');
-      return;
+      return null;
     }
 
     debugPrint('Finding closest uncaught Terpiez');
@@ -871,17 +1171,30 @@ Future<void> initialize(RedisService redisService) async {
           debugPrint('Current Location: ${_currentLocation?.latitude}, ${_currentLocation?.longitude}');
           debugPrint('Caught status before: ${closestUncaught.caught}');
 
+          _updateNearestTerpiez();
+        // Update distances after catching
+          notifyListeners();
+
+          await saveUserStateToRedis(redisService);
+          return closestUncaught;
+
+
+
         } catch (e) {
           debugPrint('Failed to download Terpiez details: $e');
-      }
+          return null;
+        }
+
+
 
         }
       }
-      _updateNearestTerpiez();
-        // Update distances after catching
-      notifyListeners();
+      // _updateNearestTerpiez();
+      //   // Update distances after catching
+      // notifyListeners();
 
-      await saveUserStateToRedis(redisService);
+      // await saveUserStateToRedis(redisService);
+      return null;
     }
 
 
@@ -918,7 +1231,7 @@ Future<void> initialize(RedisService redisService) async {
     
     for (var location in locations) {
       try {
-        debugPrint('Processing location: $location');
+        //debugPrint('Processing location: $location');
         final id = location['id'] as String;
         
         // Get Terpiez details
@@ -926,7 +1239,7 @@ Future<void> initialize(RedisService redisService) async {
         debugPrint('Got details for Terpiez: ${details['name']}');
         
         if (details['thumbnail'] != null) {
-          debugPrint('Found thumbnail key: ${details['thumbnail']}');
+          //debugPrint('Found thumbnail key: ${details['thumbnail']}');
           //final thumbnailData = await redisService.getTerpiezImage(details['thumbnail']);
           
           // Save thumbnail to file
@@ -954,6 +1267,7 @@ Future<void> initialize(RedisService redisService) async {
             stats: Map<String, dynamic>.from(details['stats'] ?? {}),
             description: details['description'] ?? '',
           );
+          
 
           // if (details['image'] != null) {
           //   final imageData = await redisService.getTerpiezImage(details['image']);
@@ -966,7 +1280,7 @@ Future<void> initialize(RedisService redisService) async {
           // }
           
           terpiez.add(newTerpiez);
-          debugPrint('Successfully added Terpiez: ${newTerpiez.name}');
+          //debugPrint('Successfully added Terpiez: ${newTerpiez.name}');
         } else {
           debugPrint('No thumbnail found for Terpiez: ${details['name']}');
         }
@@ -1141,21 +1455,79 @@ class RedisService {
   Command? _cmd;
   final String username;
   final String password;
+
+  bool _isConnected = false;
+  Timer? _probeTimer;
+  Function(bool)? onConnectionStatusChanged;
+  static const Duration connectionTimeout = Duration(seconds: 1);
   
-  RedisService({required this.username, required this.password});
+  RedisService({
+    required this.username, 
+    required this.password,
+    this.onConnectionStatusChanged,}) {
+      _startProbing();
+    }
+
+    Future<dynamic> _executeRedisOperation(Function operation) async {
+    if (!_isConnected && operation != _probe) {
+      debugPrint('Coming from executeRedisOperation');
+      throw Exception('Not connected to Redis from Execute operations method');
+    }
+    try {
+      return await operation().timeout(connectionTimeout);
+    } on TimeoutException {
+      _isConnected = false;
+      onConnectionStatusChanged?.call(false);
+      throw Exception('Redis operation timed out');
+    }
+  }
+
+  // Only allow probes when disconnected
+  void _startProbing() {
+    _probeTimer?.cancel();
+    _probeTimer = Timer.periodic(Duration(seconds: 10), (_) {
+     _probe();
+    });
+  }
+
+  Future<void> _probe() async {
+  try {
+    final conn = RedisConnection();
+    final cmd = await conn.connect(_host, _port).timeout(connectionTimeout);
+    await cmd.send_object(['AUTH', username, password]).timeout(connectionTimeout);
+    if (!_isConnected) {
+      _isConnected = true;
+      onConnectionStatusChanged?.call(true);
+    }
+  } catch (e) {
+    if (_isConnected) {
+      _isConnected = false;
+      onConnectionStatusChanged?.call(false);
+    }
+  }
+}
+
+   bool get isConnected => _isConnected;
+
   
   Future<void> connect() async {
+
     if (_cmd != null) return;
 
       try {
+        
         final conn = RedisConnection();
-        _cmd = await conn.connect(_host, _port);
+        _cmd = await conn.connect(_host, _port).timeout(connectionTimeout);
        // debugPrint('Attempting to authenticate with Redis...');
-        await _cmd!.send_object(['AUTH', username, password]);
+        await _cmd!.send_object(['AUTH', username, password]).timeout(connectionTimeout);
+        _isConnected = true;
+        onConnectionStatusChanged?.call(true);
        // debugPrint('Successfully authenticated with Redis');
     } catch (e){
+      _isConnected = false;
+      onConnectionStatusChanged?.call(false);
       debugPrint('Redis connection error: $e');
-      throw Exception ('Failed to connect: $e');
+      throw Exception ('Failed to connect from connect method: $e');
     }  
   }
   Future<void> disconnect() async {
@@ -1165,10 +1537,16 @@ class RedisService {
 
 
   Future<List<Map<String, dynamic>>> getLocations() async {
+      // if (!_isConnected) throw Exception('Not connected to Redis from getLocations');
+       
+
     try {
-      await connect();
+      await connect().timeout(connectionTimeout);
+      if (!_isConnected) {
+    throw Exception('Not connected to Redis from getLocations method');
+  }
       debugPrint('Fetching locations from Redis...');
-      final result = await _cmd!.send_object(['JSON.GET', 'locations', '.']);
+      final result = await _cmd!.send_object(['JSON.GET', 'locations', '.']).timeout(connectionTimeout);
      // debugPrint('Raw locations response: $result');
       if (result != null) {
         debugPrint('Fetched Locations from Redis');
@@ -1183,10 +1561,14 @@ class RedisService {
   }
  
   Future<Map<String, dynamic>> getTerpiezDetails(String id) async {
+      // if (!_isConnected) throw Exception('Not connected to Redis from getTerpiezDetails');
     try {
-      await connect();
+      await connect().timeout(connectionTimeout);
+      if (!_isConnected) {
+    throw Exception('Not connected to Redis From getTerpiezDetails method');
+  }
      // debugPrint('Fetching details for Terpiez ID: $id');
-      final result = await _cmd!.send_object(['JSON.GET', 'terpiez', '.$id']);
+      final result = await _cmd!.send_object(['JSON.GET', 'terpiez', '.$id']).timeout(connectionTimeout);
       //debugPrint('Raw Terpiez details: $result');
       if (result != null) {
         debugPrint('Raw Terpiez not null');
@@ -1200,10 +1582,18 @@ class RedisService {
   }
 
   Future<String> getTerpiezImage(String imageKey) async {
+      //  if (!_isConnected) {
+      //     await _probe(); // Try to reconnect
+      //     if (!_isConnected) throw Exception('Not connected to Redis');
+      //   }
+
     try {
-      await connect();
+      await connect().timeout(connectionTimeout);
+       if (!_isConnected) {
+  throw Exception('Not connected to Redis from getTerpiezImageMethod');
+}
       debugPrint('Fetching image with key: $imageKey');
-      final result = await _cmd!.send_object(['JSON.GET', 'images', '.$imageKey']);
+      final result = await _cmd!.send_object(['JSON.GET', 'images', '.$imageKey']).timeout(connectionTimeout);
       debugPrint('Successfully retrieved image data');
       if (result != null) {
         return jsonDecode(result.toString());
@@ -1216,8 +1606,15 @@ class RedisService {
   }
  
   Future<void> updateUserData(String uuid, Map<String, dynamic> data) async {
+       
     try {
-      await connect();
+
+      await connect().timeout(connectionTimeout);
+
+      if (!_isConnected){
+        throw Exception('Not connected to Redis from updateUserData');
+        
+       }
       // Fix the Redis error by properly structuring the data
       final jsonData = jsonEncode({uuid: data});
       debugPrint('Updating user data for UUID: $uuid');
@@ -1230,7 +1627,7 @@ class RedisService {
         '.',
         '{}',
         'NX'  // Only set if it doesn't exist
-      ]);
+      ]).timeout(connectionTimeout);
       
       // Then update the specific UUID path
       await _cmd!.send_object([
@@ -1238,7 +1635,7 @@ class RedisService {
         username,
         '.$uuid',
         jsonEncode(data)
-      ]);
+      ]).timeout(connectionTimeout);
 
       debugPrint('Successfully updated user data');
     } catch (e) {
@@ -1344,3 +1741,4 @@ class _LoginDialogState extends State<LoginDialog> {
 
 //9c78c8ac89a64d08a2745e379cd682f3
 //json.get bmeletoy .114ef678-01b2-477c-9bb8-0cc8014553e3
+
