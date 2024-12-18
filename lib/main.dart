@@ -16,6 +16,12 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:math' show sqrt;
 import 'package:sensors_plus/sensors_plus.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_background_service_android/flutter_background_service_android.dart';
+import 'package:audioplayers/audioplayers.dart'; 
+
+
 
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -23,6 +29,7 @@ final GlobalKey<NavigatorState> navigatorKey2 = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+   await TerpiezBackgroundService.initialize();
   final hasLoggedIn = await ManageCredentials.hasLoggedIn();
 
 
@@ -106,34 +113,6 @@ void main() async {
     }
   }
 
-  // if (!hasLoggedIn) {
-  //   runApp(
-  //     MaterialApp(
-  //       navigatorKey: navigatorKey, // Attach the global key
-  //       home: Builder(
-  //         builder: (context) {
-  //           // Show the login dialog
-  //           WidgetsBinding.instance.addPostFrameCallback((_) async {
-  //             await showDialog(
-  //               barrierDismissible: false, // Force user to complete login
-  //               context: context,
-  //               builder: (_) => const LoginDialog(),
-  //             );
-  //           });
-  //           // Return a placeholder while login is processed
-  //           return const Scaffold(body: Center(child: CircularProgressIndicator()));
-  //         },
-  //       ),
-  //     ),
-  //   );
-  // } else {
-  //   runApp(
-  //     ChangeNotifierProvider(
-  //       create: (context) => UserState(),
-  //       child: const MyApp(),
-  //     ),
-  //   );
-  // }
 }
 
 
@@ -432,6 +411,8 @@ class _FinderViewState extends State<FinderView> {
 
 Future<void> _handleShake() async {
   final userState = Provider.of<UserState>(context, listen: false);
+
+  
   
   // Visual feedback
   if (mounted) {
@@ -476,6 +457,7 @@ Future<void> _handleShake() async {
       // Attempt to catch
       final caughtTerpiez = await userState.incrementTerpiez(redisService);
       
+      
       // Show catch dialog if successful
       if (caughtTerpiez != null && mounted) {
         showDialog(
@@ -483,6 +465,8 @@ Future<void> _handleShake() async {
           barrierDismissible: false,  // Force user to use dismiss button
           builder: (context) => CatchDialog(terpiez: caughtTerpiez),
         );
+
+        await SoundService().playCatchSound();
       }
     } else {
       if (mounted) {
@@ -494,6 +478,7 @@ Future<void> _handleShake() async {
         );
       }
     }
+    
   } catch (e) {
     debugPrint('Error in _handleShake: $e');
     if (mounted) {
@@ -1023,17 +1008,17 @@ Future<void> initialize(RedisService redisService) async {
     debugPrint('Starting to save file...');
     final directory = await getApplicationDocumentsDirectory();
     final directory2 = await getExternalStorageDirectory();
-    debugPrint('Got directory: ${directory.path}');
+   // debugPrint('Got directory: ${directory.path}');
     final file = File('${directory.path}/$filename');
-    debugPrint('Got directory2: ${directory2?.path}');
+    //debugPrint('Got directory2: ${directory2?.path}');
     final file2 = File('${directory2?.path}/$filename');
 
     await directory.create(recursive: true);
-    debugPrint('Created file object: ${file.path}');
+    //debugPrint('Created file object: ${file.path}');
     await file.writeAsBytes(bytes);
-     debugPrint('Created file2 object: ${file2.path}');
+     //debugPrint('Created file2 object: ${file2.path}');
     await file2.writeAsBytes(bytes);
-    debugPrint('Written bytes to file: ${file.path}');
+    //debugPrint('Written bytes to file: ${file.path}');
     return file;
   } catch (e) {
     debugPrint('Error saving file: $e');
@@ -1137,7 +1122,7 @@ Future<void> initialize(RedisService redisService) async {
 
     // If we found an uncaught Terpiez in range
     if (closestUncaught != null && minDistance <= 10) {
-      debugPrint('found closest Terpiez: {$closestUncaught}');
+      //debugPrint('found closest Terpiez: {$closestUncaught}');
       _terpiezCaught++;
       debugPrint('Starting place to save information:');
       if(!terpiez.any((terp) => terp.name == closestUncaught!.name && terp.caught)){
@@ -1152,11 +1137,11 @@ Future<void> initialize(RedisService redisService) async {
           final thumbnailBase64 = await redisService.getTerpiezImage(details['thumbnail']);
           final fullImageBase64 = await redisService.getTerpiezImage(details['image']);
 
-          debugPrint('About to save thumbnail for ${closestUncaught.name}');
+         // debugPrint('About to save thumbnail for ${closestUncaught.name}');
           final thumbnailFile = await _saveToFile(base64Decode(thumbnailBase64), '${closestUncaught.name}_thumbnail.png');
-          debugPrint('About to save full image for ${closestUncaught.name}');
+         // debugPrint('About to save full image for ${closestUncaught.name}');
           final fullImageFile = await _saveToFile(base64Decode(fullImageBase64), '${closestUncaught.name}_full.png');
-          debugPrint('Files saved successfully');
+        // debugPrint('Files saved successfully');
 
           closestUncaught.thumbnailPath = thumbnailFile.path;
           closestUncaught.fullImagePath = fullImageFile.path;
@@ -1167,9 +1152,9 @@ Future<void> initialize(RedisService redisService) async {
             _currentLocation!.longitude
           ));
 
-          debugPrint('Terp Location: ${closestUncaught.location.latitude}, ${closestUncaught?.location.longitude}');
-          debugPrint('Current Location: ${_currentLocation?.latitude}, ${_currentLocation?.longitude}');
-          debugPrint('Caught status before: ${closestUncaught.caught}');
+         // debugPrint('Terp Location: ${closestUncaught.location.latitude}, ${closestUncaught?.location.longitude}');
+          //debugPrint('Current Location: ${_currentLocation?.latitude}, ${_currentLocation?.longitude}');
+          //debugPrint('Caught status before: ${closestUncaught.caught}');
 
           _updateNearestTerpiez();
         // Update distances after catching
@@ -1236,7 +1221,7 @@ Future<void> initialize(RedisService redisService) async {
         
         // Get Terpiez details
         final details = await redisService.getTerpiezDetails(id);
-        debugPrint('Got details for Terpiez: ${details['name']}');
+        //debugPrint('Got details for Terpiez: ${details['name']}');
         
         if (details['thumbnail'] != null) {
           //debugPrint('Found thumbnail key: ${details['thumbnail']}');
@@ -1316,6 +1301,226 @@ Future<void> initialize(RedisService redisService) async {
         debugPrint('Error saving user state to Redis: $e');
       }
     }
+}
+
+
+
+
+class TerpiezBackgroundService {
+  static final FlutterLocalNotificationsPlugin _notifications = FlutterLocalNotificationsPlugin();
+  static const notificationChannelId = 'terpiez_nearby';
+  static const foregroundNotificationId = 1;
+  static const nearbyNotificationId = 2;
+  static final FlutterBackgroundService _service = FlutterBackgroundService();
+
+  static void _handleNotificationTap(String? payload) {
+    if (payload == 'finder' && navigatorKey2.currentContext != null) {
+      final tabController = DefaultTabController.of(navigatorKey2.currentContext!);
+      if (tabController != null) {
+        tabController.animateTo(1); // Index 1 is the Finder tab
+      }
+    }
+  }
+
+  static Future<void> initialize() async {
+    // Initialize notifications
+    const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const initSettings = InitializationSettings(android: androidSettings);
+    
+    // Handle notification clicks when app launches
+    final NotificationAppLaunchDetails? launchDetails = 
+        await _notifications.getNotificationAppLaunchDetails();
+    if (launchDetails?.didNotificationLaunchApp ?? false) {
+      _handleNotificationTap(launchDetails?.notificationResponse?.payload);
+    }
+
+    // Initialize notifications with click handling
+    await _notifications.initialize(
+      initSettings,
+      onDidReceiveNotificationResponse: (details) => _handleNotificationTap(details.payload),
+    );
+
+    // Create notification channel
+    const channel = AndroidNotificationChannel(
+      notificationChannelId,
+      'Nearby Terpiez',
+      importance: Importance.high,
+      sound: RawResourceAndroidNotificationSound('nearby_sound'),
+      playSound: true,
+    );
+
+    await _notifications
+        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+
+
+    await _notifications
+    .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+    ?.requestNotificationsPermission();
+
+    // Configure background service
+    await _service.configure(
+      androidConfiguration: AndroidConfiguration(
+        onStart: onStart,
+        autoStart: true,
+        isForegroundMode: true,
+        notificationChannelId: notificationChannelId,
+        initialNotificationTitle: 'Terpiez Finder',
+        initialNotificationContent: 'Searching for nearby Terpiez...',
+        foregroundServiceNotificationId: foregroundNotificationId,
+      ),
+      iosConfiguration: IosConfiguration(
+        autoStart: true,
+        onForeground: onStart,
+      ),
+    );
+  }
+
+  @pragma('vm:entry-point')
+  static Future<void> onStart(ServiceInstance service) async {
+    if (service is AndroidServiceInstance) {
+      service.setAsForegroundService();
+    }
+
+    final soundService = SoundService();
+    await soundService.initialize();
+
+    LocationSettings locationSettings = const LocationSettings(
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 5,
+    );
+
+    Geolocator.getPositionStream(locationSettings: locationSettings)
+        .listen((Position position) async {
+      final terpiez = await _getNearbyTerpiez(position);
+      if (terpiez != null) {
+        debugPrint("Why are we not playing nearby sound");
+        await Future.wait([
+          SoundService().playNearbySound(),
+          _showNearbyNotification(terpiez['name']),
+          
+        ]);
+      }
+    });
+  }
+
+  static Future<Map<String, dynamic>?> _getNearbyTerpiez(Position position) async {
+    try {
+      final credentials = await ManageCredentials.getCredentials();
+      if (credentials['username'] == null || credentials['password'] == null) {
+        return null;
+      }
+
+      final redisService = RedisService(
+        username: credentials['username']!,
+        password: credentials['password']!,
+      );
+
+      final locations = await redisService.getLocations();
+      
+      for (var location in locations) {
+        final distance = Geolocator.distanceBetween(
+          position.latitude,
+          position.longitude,
+          double.parse(location['lat'].toString()),
+          double.parse(location['lon'].toString()),
+        );
+
+        debugPrint('Distance to Terpiez: ${distance.toStringAsFixed(1)}m');
+         debugPrint('Terpiez details: we get here tho!! :)'); 
+
+        if (distance <= 10 /*&& distance > 10*/) {  // Between 10-20m range
+          final details = await redisService.getTerpiezDetails(location['id']);
+           debugPrint('Terpiez details: $details'); 
+          return {
+            'name': details['name'],
+            'distance': distance,
+            'id': location['id']
+          };
+        }
+      }
+      return null;
+    } catch (e) {
+      debugPrint('Error in _getNearbyTerpiez: $e');
+      return null;
+    }
+  }
+
+  static Future<void> _showNearbyNotification(String terpiezName) async {
+    const androidDetails = AndroidNotificationDetails(
+      notificationChannelId,
+      'Nearby Terpiez',
+      channelDescription: 'Notifications for nearby Terpiez',
+      importance: Importance.high,
+      priority: Priority.high,
+      sound: RawResourceAndroidNotificationSound('nearby_sound'),
+      playSound: true,
+      ongoing: false,
+      autoCancel: true
+    );
+
+    await _notifications.show(
+      DateTime.now().millisecondsSinceEpoch % 100000, // Unique ID for each notification
+      'Terpiez Nearby!',
+      'A $terpiezName is within catching range!',
+      const NotificationDetails(android: androidDetails),
+      payload: 'finder'
+    );
+  }
+}
+
+class SoundService {
+  static final SoundService _instance = SoundService._internal();
+  factory SoundService() => _instance;
+  
+  final AudioPlayer _catchPlayer = AudioPlayer();
+  final AudioPlayer _nearbyPlayer = AudioPlayer();
+  bool _soundEnabled = true;
+  static const _soundKey = 'sound_enabled';
+
+  SoundService._internal();
+
+  Future<void> initialize() async {
+    await AudioCache.instance.loadAll([
+      'sounds/catch_sound.wav',
+      'sounds/nearby_sound.wav',
+    ]);
+    _soundEnabled = await _loadSoundPreference();
+  }
+
+  Future<void> playCatchSound() async {
+    if (!_soundEnabled) return;
+    await _catchPlayer.stop();
+    await _catchPlayer.play(AssetSource('sounds/catch_sound.wav'));
+  }
+
+  Future<void> playNearbySound() async {
+    if (!_soundEnabled) return;
+    await _nearbyPlayer.stop();
+    await _nearbyPlayer.play(AssetSource('sounds/nearby_sound.wav'));
+  }
+
+  Future<void> setSoundEnabled(bool enabled) async {
+    _soundEnabled = enabled;
+    await _saveSoundPreference(enabled);
+  }
+
+  bool get isSoundEnabled => _soundEnabled;
+
+  Future<bool> _loadSoundPreference() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_soundKey) ?? true;
+  }
+
+  Future<void> _saveSoundPreference(bool enabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_soundKey, enabled);
+  }
+
+  void dispose() {
+    _catchPlayer.dispose();
+    _nearbyPlayer.dispose();
+  }
 }
 
 
@@ -1592,9 +1797,9 @@ class RedisService {
        if (!_isConnected) {
   throw Exception('Not connected to Redis from getTerpiezImageMethod');
 }
-      debugPrint('Fetching image with key: $imageKey');
+     // debugPrint('Fetching image with key: $imageKey');
       final result = await _cmd!.send_object(['JSON.GET', 'images', '.$imageKey']).timeout(connectionTimeout);
-      debugPrint('Successfully retrieved image data');
+      //debugPrint('Successfully retrieved image data');
       if (result != null) {
         return jsonDecode(result.toString());
       }
@@ -1617,8 +1822,8 @@ class RedisService {
        }
       // Fix the Redis error by properly structuring the data
       final jsonData = jsonEncode({uuid: data});
-      debugPrint('Updating user data for UUID: $uuid');
-      debugPrint('Data to be saved: $jsonData');
+    // debugPrint('Updating user data for UUID: $uuid');
+     // debugPrint('Data to be saved: $jsonData');
       
       // Create the root object first if it doesn't exist
       await _cmd!.send_object([
