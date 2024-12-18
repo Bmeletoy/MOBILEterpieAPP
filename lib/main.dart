@@ -130,14 +130,66 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      builder: (context, child){
-        return Scaffold(
-          body: child,
-        );
-      },
+      // builder: (context, child){
+      //   return Scaffold(
+      //     body: child,
+      //   );
+      // },
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
+          drawer: provider.Consumer<UserState>(
+            builder: (context, userState, child) => Drawer(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  const DrawerHeader(
+                    decoration: BoxDecoration(color: Colors.brown),
+                    child: Text('Preferences', 
+                      style: TextStyle(color: Colors.white, fontSize: 24)),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.volume_up),
+                    title: SwitchListTile(
+                      title: const Text('Sound Effects'),
+                      value: SoundService().isSoundEnabled,
+                      onChanged: (value) async {
+                        await SoundService().setSoundEnabled(value);
+                        userState.notifyListeners();
+                      },
+                    ),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.delete_forever),
+                    title: const Text('Reset All Data'),
+                    onTap: () => showDialog(
+                      context: context,
+                      builder: (_) => AlertDialog(
+                        title: const Text('Reset All Data'),
+                        content: const Text('This will delete all your progress. Are you sure?'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              userState.resetAllData();
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('All data has been reset')),
+                              );
+                            },
+                            child: const Text('Reset', style: TextStyle(color: Colors.red)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           appBar: AppBar(
             title: const Text('Terpiez'),
             backgroundColor: Colors.brown,
@@ -1301,6 +1353,50 @@ Future<void> initialize(RedisService redisService) async {
         debugPrint('Error saving user state to Redis: $e');
       }
     }
+
+    // Add to UserState class
+Future<void> resetAllData() async {
+  try {
+    // Generate new UUID first
+    String newUUID = const Uuid().v4();
+    await ManageCredentials.storeUUID(newUUID);
+    
+    // Reset local state
+    _terpiezCaught = 0;
+    _startDate = DateTime.now();
+    
+    for (var terp in terpiez) {
+      terp.caught = false;
+      terp.caughtLocations = [terp.location];
+      if (terp.thumbnailPath != null) {
+        await File(terp.thumbnailPath!).delete();
+      }
+      if (terp.fullImagePath != null) {
+        await File(terp.fullImagePath!).delete();
+      }
+      terp.thumbnailPath = null;
+      terp.fullImagePath = null;
+    }
+    
+    // Try Redis update, but don't block on failure
+    if (_redisService != null) {
+      try {
+        await _redisService!.updateUserData(newUUID, {
+          'terpiezCaught': 0,
+          'daysActive': 0,
+          'caughtTerpiez': [],
+        });
+      } catch (e) {
+        debugPrint('Redis update failed during reset: $e');
+      }
+    }
+    
+    notifyListeners();
+  } catch (e) {
+    debugPrint('Error in resetAllData: $e');
+    rethrow;
+  }
+}
 }
 
 
@@ -1315,11 +1411,22 @@ class TerpiezBackgroundService {
 
   static void _handleNotificationTap(String? payload) {
     if (payload == 'finder' && navigatorKey2.currentContext != null) {
-      final tabController = DefaultTabController.of(navigatorKey2.currentContext!);
-      if (tabController != null) {
-        tabController.animateTo(1); // Index 1 is the Finder tab
-      }
+    final context = navigatorKey2.currentContext!;
+    final tabController = DefaultTabController.of(context);
+    
+    // If app is already running
+    if (tabController != null) {
+      tabController.animateTo(1); // Switch to Finder tab
+    } else {
+      // App was not running, navigate after initialization
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) {
+          final newTabController = DefaultTabController.of(context);
+          newTabController?.animateTo(1);
+        }
+      });
     }
+  }
   }
 
   static Future<void> initialize() async {
@@ -1328,11 +1435,11 @@ class TerpiezBackgroundService {
     const initSettings = InitializationSettings(android: androidSettings);
     
     // Handle notification clicks when app launches
-    final NotificationAppLaunchDetails? launchDetails = 
-        await _notifications.getNotificationAppLaunchDetails();
-    if (launchDetails?.didNotificationLaunchApp ?? false) {
-      _handleNotificationTap(launchDetails?.notificationResponse?.payload);
-    }
+    // final NotificationAppLaunchDetails? launchDetails = 
+    //     await _notifications.getNotificationAppLaunchDetails();
+    // if (launchDetails?.didNotificationLaunchApp ?? false) {
+    //   _handleNotificationTap(launchDetails?.notificationResponse?.payload);
+    // }
 
     // Initialize notifications with click handling
     await _notifications.initialize(
@@ -1346,7 +1453,7 @@ class TerpiezBackgroundService {
       'Nearby Terpiez',
       importance: Importance.high,
       sound: RawResourceAndroidNotificationSound('nearby_sound'),
-      playSound: true,
+      playSound: false,
     );
 
     await _notifications
@@ -1357,6 +1464,15 @@ class TerpiezBackgroundService {
     await _notifications
     .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
     ?.requestNotificationsPermission();
+
+    final NotificationAppLaunchDetails? launchDetails = 
+      await _notifications.getNotificationAppLaunchDetails();
+      
+  if (launchDetails?.didNotificationLaunchApp ?? false) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _handleNotificationTap(launchDetails?.notificationResponse?.payload);
+    });
+  }
 
     // Configure background service
     await _service.configure(
@@ -1373,7 +1489,10 @@ class TerpiezBackgroundService {
         autoStart: true,
         onForeground: onStart,
       ),
+      
     );
+
+    
   }
 
   @pragma('vm:entry-point')
@@ -1392,9 +1511,11 @@ class TerpiezBackgroundService {
 
     Geolocator.getPositionStream(locationSettings: locationSettings)
         .listen((Position position) async {
+           debugPrint("Position update received: ${position.latitude}, ${position.longitude}");
       final terpiez = await _getNearbyTerpiez(position);
+      debugPrint("Nearby Terpiez check result: $terpiez");
       if (terpiez != null) {
-        debugPrint("Why are we not playing nearby sound");
+        debugPrint("Attempting to show notification for: ${terpiez['name']}");
         await Future.wait([
           SoundService().playNearbySound(),
           _showNearbyNotification(terpiez['name']),
@@ -1427,9 +1548,9 @@ class TerpiezBackgroundService {
         );
 
         debugPrint('Distance to Terpiez: ${distance.toStringAsFixed(1)}m');
-         debugPrint('Terpiez details: we get here tho!! :)'); 
+        //  debugPrint('Terpiez details: we get here tho!! :)'); 
 
-        if (distance <= 10 /*&& distance > 10*/) {  // Between 10-20m range
+        if (distance <= 20) {  // Between 10-20m range
           final details = await redisService.getTerpiezDetails(location['id']);
            debugPrint('Terpiez details: $details'); 
           return {
@@ -1447,26 +1568,40 @@ class TerpiezBackgroundService {
   }
 
   static Future<void> _showNearbyNotification(String terpiezName) async {
+  debugPrint("Starting notification setup");
+  
+  try {
     const androidDetails = AndroidNotificationDetails(
       notificationChannelId,
       'Nearby Terpiez',
       channelDescription: 'Notifications for nearby Terpiez',
-      importance: Importance.high,
+      importance: Importance.max,  // Changed to max
       priority: Priority.high,
-      sound: RawResourceAndroidNotificationSound('nearby_sound'),
-      playSound: true,
+      //sound: RawResourceAndroidNotificationSound('nearby_sound'),
+      playSound: false,
       ongoing: false,
-      autoCancel: true
+      autoCancel: true,
+      enableLights: true,
+      enableVibration: true,
+      category: AndroidNotificationCategory.alarm  // Added category
     );
 
+    final id = DateTime.now().millisecondsSinceEpoch % 100000;
+    debugPrint("Showing notification with ID: $id");
+    
     await _notifications.show(
-      DateTime.now().millisecondsSinceEpoch % 100000, // Unique ID for each notification
+      id,
       'Terpiez Nearby!',
-      'A $terpiezName is within catching range!',
+      'A $terpiezName is within range!',
       const NotificationDetails(android: androidDetails),
       payload: 'finder'
     );
+    
+    debugPrint("Notification show call completed");
+  } catch (e) {
+    debugPrint("Error showing notification: $e");
   }
+}
 }
 
 class SoundService {
@@ -1776,7 +1911,7 @@ class RedisService {
       final result = await _cmd!.send_object(['JSON.GET', 'terpiez', '.$id']).timeout(connectionTimeout);
       //debugPrint('Raw Terpiez details: $result');
       if (result != null) {
-        debugPrint('Raw Terpiez not null');
+        // debugPrint('Raw Terpiez not null');
         return Map<String, dynamic>.from(jsonDecode(result.toString()));
       }
       throw Exception('No details found for Terpiez ID: $id');
@@ -1946,4 +2081,3 @@ class _LoginDialogState extends State<LoginDialog> {
 
 //9c78c8ac89a64d08a2745e379cd682f3
 //json.get bmeletoy .114ef678-01b2-477c-9bb8-0cc8014553e3
-

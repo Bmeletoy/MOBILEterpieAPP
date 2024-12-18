@@ -1,0 +1,1629 @@
+Launching lib/main.dart on sdk gphone64 arm64 in debug mode...
+Running Gradle task 'assembleDebug'...                             10.7s
+✓ Built build/app/outputs/flutter-apk/app-debug.apk
+Installing build/app/outputs/flutter-apk/app-debug.apk...        1,311ms
+I/flutter ( 6408): [IMPORTANT:flutter/shell/platform/android/android_context_vk_impeller.cc(60)] Using the Impeller rendering backend (Vulkan).
+D/FlutterGeolocator( 6408): Attaching Geolocator to activity
+I/flutter ( 6408): [IMPORTANT:flutter/shell/platform/android/android_context_vk_impeller.cc(60)] Using the Impeller rendering backend (Vulkan).
+D/FlutterGeolocator( 6408): Creating service.
+D/FlutterGeolocator( 6408): Binding to location service.
+D/FlutterGeolocator( 6408): Geolocator foreground service connected
+D/FlutterGeolocator( 6408): Initializing Geolocator services
+D/FlutterGeolocator( 6408): Flutter engine connected. Connected engine count 1
+D/FlutterGeolocator( 6408): Geolocator foreground service connected
+D/FlutterGeolocator( 6408): Initializing Geolocator services
+D/FlutterGeolocator( 6408): Flutter engine connected. Connected engine count 2
+Syncing files to device sdk gphone64 arm64...                   
+V/BackgroundService( 6408): Service already running, using existing service
+Syncing files to device sdk gphone64 arm64...                      143ms
+
+Flutter run key commands.
+r Hot reload. 🔥🔥🔥
+R Hot restart.
+h List all available interactive commands.
+d Detach (terminate "flutter run" but leave application running).
+c Clear the screen
+q Quit (terminate the application on the device).
+
+A Dart VM Service on sdk gphone64 arm64 is available at: http://127.0.0.1:57349/zux_go0ZfBM=/
+The Flutter DevTools debugger and profiler on sdk gphone64 arm64 is available at: http://127.0.0.1:57357?uri=http://127.0.0.1:57349/zux_go0ZfBM=/
+I/flutter ( 6408): Initializing UserState with UUID: 0fcd235a-aa2f-41f8-84b0-b919c9718d9f
+I/flutter ( 6408): Connection status changed: true
+I/flutter ( 6408): Fetching locations from Redis...
+I/flutter ( 6408): Fetched Locations from Redis
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+E/FlutterGeolocator( 6408): Geolocator position updates started
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Raw Terpiez not null
+I/flutter ( 6408): Finished fetching Terpiez. Total count: 101
+I/flutter ( 6408): Successfully initialized UserState with Redis data
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 169
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 176
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 181
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 185
+E/FlutterGeolocator( 6408): Geolocator position updates started
+I/flutter ( 6408): Position update received: 38.9901867, -76.9359833
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 186
+I/flutter ( 6408): Fetching locations from Redis...
+I/flutter ( 6408): Fetched Locations from Redis
+I/flutter ( 6408): Distance to Terpiez: 124.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 88.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 90.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 55.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 42.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 44.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 121.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 131.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 150.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 150.6m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 174.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 260.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 328.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 299.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 303.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 327.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 393.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 449.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 397.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 52.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 68.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 121.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 181.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 271.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 295.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 306.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 326.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 281.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 353.6m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 370.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 330.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 382.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 442.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 431.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 465.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 498.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 497.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 529.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 557.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 635.6m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 666.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 748.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 782.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 814.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 820.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 832.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 873.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 863.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 833.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 756.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 656.6m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 179.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 214.6m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 315.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 387.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 394.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 475.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 557.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 664.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 718.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 798.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 826.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 887.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 950.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 969.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1015.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1052.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 990.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1002.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1151.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1083.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1038.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1012.6m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 946.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 904.6m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 817.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 108.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 105.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 129.6m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 157.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 148.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 194.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 252.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 283.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 259.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 321.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 371.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 336.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 328.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 353.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 587.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 643.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 722.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 772.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 870.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1013.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1019.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1107.6m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1101.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 970.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Nearby Terpiez check result: null
+I/flutter ( 6408): Getting terpiez list. Count: 101
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 193
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 197
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 218
+D/ProfileInstaller( 6408): Installing profile for com.example.terpiez
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 222
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 224
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 223
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 181
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 185
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 186
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 193
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 197
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 218
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 222
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 224
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 223
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 181
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 185
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 186
+I/flutter ( 6408): Getting terpiez list. Count: 101
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 193
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 225
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 176
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 218
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 222
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 223
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 197
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 185
+E/FlutterGeolocator( 6408): Geolocator position updates stopped
+E/FlutterGeolocator( 6408): There is still another flutter engine connected, not stopping location service
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 186
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 193
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 181
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 218
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 222
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 223
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 197
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 185
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 186
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 193
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 181
+I/flutter ( 6408): Getting terpiez list. Count: 101
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 224
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 222
+E/FlutterGeolocator( 6408): Geolocator position updates started
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 223
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 197
+I/flutter ( 6408): Getting terpiez list. Count: 101
+I/flutter ( 6408): Getting terpiez list. Count: 101
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 185
+I/flutter ( 6408): Getting terpiez list. Count: 101
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 225
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 186
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 181
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 193
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 191
+I/flutter ( 6408): Position update received: 38.9890634, -76.9358585
+I/flutter ( 6408): Fetching locations from Redis...
+I/flutter ( 6408): Fetched Locations from Redis
+I/flutter ( 6408): Distance to Terpiez: 1.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 54.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 64.6m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 112.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 121.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 126.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 80.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 20.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 6.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 25.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 60.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 99.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 194.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 274.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 262.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 265.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 279.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 349.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 412.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 397.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 145.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 185.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 244.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 305.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 396.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 420.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 431.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 450.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 401.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 464.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 476.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 406.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 449.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 506.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 512.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 526.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 556.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 546.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 545.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 533.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 610.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 637.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 721.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 757.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 790.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 796.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 810.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 823.6m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 815.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 788.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 708.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 612.6m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 90.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 111.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 242.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 318.6m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 323.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 395.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 474.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 573.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 623.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Getting terpiez list. Count: 101
+I/flutter ( 6408): Distance to Terpiez: 706.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 733.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 791.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 849.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 868.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 916.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 954.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 900.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 915.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1092.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1040.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1006.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 983.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 918.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 874.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 782.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 142.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 177.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 215.9m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 236.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 241.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 256.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 324.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 363.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 352.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 387.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 424.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 382.1m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 341.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 321.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 176
+I/flutter ( 6408): Distance to Terpiez: 518.8m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 569.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 657.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 704.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 805.5m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 954.7m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 954.2m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1034.0m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 1026.3m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Distance to Terpiez: 894.4m
+I/flutter ( 6408): Terpiez details: we get here tho!! :)
+I/flutter ( 6408): Nearby Terpiez check result: null
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 197
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 196
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 201
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 188
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 185
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/flutter ( 6408): Shake passed cooldown. Triggering _handleShake
+I/flutter ( 6408): Trying to catch
+I/flutter ( 6408): Connected: true, In Catch Range: true
+I/flutter ( 6408): Starting incrementTerpiez
+I/flutter ( 6408): Finding closest uncaught Terpiez
+I/flutter ( 6408): Starting place to save information:
+I/flutter ( 6408): Do we Get Here?
+I/flutter ( 6408): Getting information to save
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 207
+I/flutter ( 6408): Raw Terpiez not null
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 197
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 196
+I/flutter ( 6408): Starting to save file...
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 204
+I/flutter ( 6408): Starting to save file...
+I/flutter ( 6408): Getting terpiez list. Count: 101
+I/flutter ( 6408): Successfully updated user data
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 201
+W/WindowOnBackDispatcher( 6408): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 6408): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 188
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 185
+V/MediaPlayer( 6408): resetDrmState:  mDrmInfo=null mDrmProvisioningThread=null mPrepareDrmInProgress=false mActiveDrmScheme=false
+V/MediaPlayer( 6408): cleanDrmObj: mDrmObj=null mDrmSessionId=null
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 209
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+I/example.terpiez( 6408): Thread[2,tid=6410,WaitingInMainSignalCatcherLoop,Thread*=0xb400007476a34f50,peer=0x14001680,"Signal Catcher"]: reacting to signal 3
+I/example.terpiez( 6408): 
+I/example.terpiez( 6408): Wrote stack traces to tombstoned
+V/MediaPlayer( 6408): resetDrmState:  mDrmInfo=null mDrmProvisioningThread=null mPrepareDrmInProgress=false mActiveDrmScheme=false
+V/MediaPlayer( 6408): cleanDrmObj: mDrmObj=null mDrmSessionId=null
+V/MediaPlayer( 6408): resetDrmState:  mDrmInfo=null mDrmProvisioningThread=null mPrepareDrmInProgress=false mActiveDrmScheme=false
+V/MediaPlayer( 6408): cleanDrmObj: mDrmObj=null mDrmSessionId=null
+E/example.terpiez( 6408): Invalid resource ID 0x00000001.
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 207
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 204
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 201
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 208
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 188
+I/example.terpiez( 6408): Explicit concurrent mark compact GC freed 1442KB AllocSpace bytes, 1(20KB) LOS objects, 49% free, 2960KB/5921KB, paused 66us,1.013ms total 11.701ms
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 192
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 196
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 198
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 199
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 201
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 192
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+W/WindowOnBackDispatcher( 6408): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 6408): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 196
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 198
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 199
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 201
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 192
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+E/flutter ( 6408): [ERROR:flutter/runtime/dart_vm_initializer.cc(40)] Unhandled Exception: Error: Could not find the correct Provider<UserState> above this Builder Widget
+E/flutter ( 6408): 
+E/flutter ( 6408): This happens because you used a `BuildContext` that does not include the provider
+E/flutter ( 6408): of your choice. There are a few common scenarios:
+E/flutter ( 6408): 
+E/flutter ( 6408): - You added a new provider in your `main.dart` and performed a hot-reload.
+E/flutter ( 6408):   To fix, perform a hot-restart.
+E/flutter ( 6408): 
+E/flutter ( 6408): - The provider you are trying to read is in a different route.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Providers are "scoped". So if you insert of provider inside a route, then
+E/flutter ( 6408):   other routes will not be able to access that provider.
+E/flutter ( 6408): 
+E/flutter ( 6408): - You used a `BuildContext` that is an ancestor of the provider you are trying to read.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Make sure that Builder is under your MultiProvider/Provider<UserState>.
+E/flutter ( 6408):   This usually happens when you are creating a provider and trying to read it immediately.
+E/flutter ( 6408): 
+E/flutter ( 6408):   For example, instead of:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // Will throw a ProviderNotFoundError, because `context` is associated
+E/flutter ( 6408):       // to the widget that is the parent of `Provider<Example>`
+E/flutter ( 6408):       child: Text(context.watch<Example>().toString()),
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408):   consider using `builder` like so:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // we use `builder` to obtain a new `BuildContext` that has access to the provider
+E/flutter ( 6408):       builder: (context, child) {
+E/flutter ( 6408):         // No longer throws
+E/flutter ( 6408):         return Text(context.watch<Example>().toString());
+E/flutter ( 6408):       }
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408): If none of these solutions work, consider asking for help on StackOverflow:
+E/flutter ( 6408): https://stackoverflow.com/questions/tagged/flutter
+E/flutter ( 6408): 
+E/flutter ( 6408): #0      Provider._inheritedElementOf (package:provider/src/provider.dart:343:7)
+E/flutter ( 6408): #1      Provider.of (package:provider/src/provider.dart:293:30)
+E/flutter ( 6408): #2      MyApp.build.<anonymous closure>.<anonymous closure>.<anonymous closure> (package:terpiez/main.dart:185:56)
+E/flutter ( 6408): #3      _InkResponseState.handleTap (package:flutter/src/material/ink_well.dart:1176:21)
+E/flutter ( 6408): #4      GestureRecognizer.invokeCallback (package:flutter/src/gestures/recognizer.dart:351:24)
+E/flutter ( 6408): #5      TapGestureRecognizer.handleTapUp (package:flutter/src/gestures/tap.dart:656:11)
+E/flutter ( 6408): #6      BaseTapGestureRecognizer._checkUp (package:flutter/src/gestures/tap.dart:313:5)
+E/flutter ( 6408): #7      BaseTapGestureRecognizer.handlePrimaryPointer (package:flutter/src/gestures/tap.dart:246:7)
+E/flutter ( 6408): #8      PrimaryPointerGestureRecognizer.handleEvent (package:flutter/src/gestures/recognizer.dart:703:9)
+E/flutter ( 6408): #9      PointerRouter._dispatch (package:flutter/src/gestures/pointer_router.dart:98:12)
+E/flutter ( 6408): #10     PointerRouter._dispatchEventToRoutes.<anonymous closure> (package:flutter/src/gestures/pointer_router.dart:143:9)
+E/flutter ( 6408): #11     _LinkedHashMapMixin.forEach (dart:_compact_hash:726:13)
+E/flutter ( 6408): #12     PointerRouter._dispatchEventToRoutes (package:flutter/src/gestures/pointer_router.dart:141:18)
+E/flutter ( 6408): #13     PointerRouter.route (package:flutter/src/gestures/pointer_router.dart:127:7)
+E/flutter ( 6408): #14     GestureBinding.handleEvent (package:flutter/src/gestures/binding.dart:502:19)
+E/flutter ( 6408): #15     GestureBinding.dispatchEvent (package:flutter/src/gestures/binding.dart:482:22)
+E/flutter ( 6408): #16     RendererBinding.dispatchEvent (package:flutter/src/rendering/binding.dart:457:11)
+E/flutter ( 6408): #17     GestureBinding._handlePointerEventImmediately (package:flutter/src/gestures/binding.dart:427:7)
+E/flutter ( 6408): #18     GestureBinding.handlePointerEvent (package:flutter/src/gestures/binding.dart:390:5)
+E/flutter ( 6408): #19     GestureBinding._flushPointerEventQueue (package:flutter/src/gestures/binding.dart:337:7)
+E/flutter ( 6408): #20     GestureBinding._handlePointerDataPacket (package:flutter/src/gestures/binding.dart:306:9)
+E/flutter ( 6408): #21     _invoke1 (dart:ui/hooks.dart:328:13)
+E/flutter ( 6408): #22     PlatformDispatcher._dispatchPointerDataPacket (dart:ui/platform_dispatcher.dart:450:7)
+E/flutter ( 6408): #23     _dispatchPointerDataPacket (dart:ui/hooks.dart:262:31)
+E/flutter ( 6408): 
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 196
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 198
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 199
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 201
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 192
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 207
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 188
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 199
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 201
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 192
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 207
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 199
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 201
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+I/flutter ( 6408): Getting terpiez list. Count: 101
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 188
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 208
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 192
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 199
+E/FlutterGeolocator( 6408): Geolocator position updates stopped
+E/FlutterGeolocator( 6408): There is still another flutter engine connected, not stopping location service
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 201
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 207
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 192
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 208
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 199
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 201
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 188
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 207
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 192
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 199
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 213
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 201
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 207
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 188
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 214
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 199
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/flutter ( 6408): Getting terpiez list. Count: 101
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 192
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 207
+E/FlutterGeolocator( 6408): Geolocator position updates started
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 208
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+I/flutter ( 6408): Getting terpiez list. Count: 101
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 199
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 209
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 192
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 207
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 188
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 208
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 212
+W/WindowOnBackDispatcher( 6408): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 6408): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 192
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 207
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 188
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 208
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+E/flutter ( 6408): [ERROR:flutter/runtime/dart_vm_initializer.cc(40)] Unhandled Exception: Error: Could not find the correct Provider<UserState> above this Builder Widget
+E/flutter ( 6408): 
+E/flutter ( 6408): This happens because you used a `BuildContext` that does not include the provider
+E/flutter ( 6408): of your choice. There are a few common scenarios:
+E/flutter ( 6408): 
+E/flutter ( 6408): - You added a new provider in your `main.dart` and performed a hot-reload.
+E/flutter ( 6408):   To fix, perform a hot-restart.
+E/flutter ( 6408): 
+E/flutter ( 6408): - The provider you are trying to read is in a different route.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Providers are "scoped". So if you insert of provider inside a route, then
+E/flutter ( 6408):   other routes will not be able to access that provider.
+E/flutter ( 6408): 
+E/flutter ( 6408): - You used a `BuildContext` that is an ancestor of the provider you are trying to read.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Make sure that Builder is under your MultiProvider/Provider<UserState>.
+E/flutter ( 6408):   This usually happens when you are creating a provider and trying to read it immediately.
+E/flutter ( 6408): 
+E/flutter ( 6408):   For example, instead of:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // Will throw a ProviderNotFoundError, because `context` is associated
+E/flutter ( 6408):       // to the widget that is the parent of `Provider<Example>`
+E/flutter ( 6408):       child: Text(context.watch<Example>().toString()),
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408):   consider using `builder` like so:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // we use `builder` to obtain a new `BuildContext` that has access to the provider
+E/flutter ( 6408):       builder: (context, child) {
+E/flutter ( 6408):         // No longer throws
+E/flutter ( 6408):         return Text(context.watch<Example>().toString());
+E/flutter ( 6408):       }
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408): If none of these solutions work, consider asking for help on StackOverflow:
+E/flutter ( 6408): https://stackoverflow.com/questions/tagged/flutter
+E/flutter ( 6408): 
+E/flutter ( 6408): #0      Provider._inheritedElementOf (package:provider/src/provider.dart:343:7)
+E/flutter ( 6408): #1      Provider.of (package:provider/src/provider.dart:293:30)
+E/flutter ( 6408): #2      MyApp.build.<anonymous closure>.<anonymous closure>.<anonymous closure> (package:terpiez/main.dart:185:56)
+E/flutter ( 6408): #3      _InkResponseState.handleTap (package:flutter/src/material/ink_well.dart:1176:21)
+E/flutter ( 6408): #4      GestureRecognizer.invokeCallback (package:flutter/src/gestures/recognizer.dart:351:24)
+E/flutter ( 6408): #5      TapGestureRecognizer.handleTapUp (package:flutter/src/gestures/tap.dart:656:11)
+E/flutter ( 6408): #6      BaseTapGestureRecognizer._checkUp (package:flutter/src/gestures/tap.dart:313:5)
+E/flutter ( 6408): #7      BaseTapGestureRecognizer.handlePrimaryPointer (package:flutter/src/gestures/tap.dart:246:7)
+E/flutter ( 6408): #8      PrimaryPointerGestureRecognizer.handleEvent (package:flutter/src/gestures/recognizer.dart:703:9)
+E/flutter ( 6408): #9      PointerRouter._dispatch (package:flutter/src/gestures/pointer_router.dart:98:12)
+E/flutter ( 6408): #10     PointerRouter._dispatchEventToRoutes.<anonymous closure> (package:flutter/src/gestures/pointer_router.dart:143:9)
+E/flutter ( 6408): #11     _LinkedHashMapMixin.forEach (dart:_compact_hash:726:13)
+E/flutter ( 6408): #12     PointerRouter._dispatchEventToRoutes (package:flutter/src/gestures/pointer_router.dart:141:18)
+E/flutter ( 6408): #13     PointerRouter.route (package:flutter/src/gestures/pointer_router.dart:127:7)
+E/flutter ( 6408): #14     GestureBinding.handleEvent (package:flutter/src/gestures/binding.dart:502:19)
+E/flutter ( 6408): #15     GestureBinding.dispatchEvent (package:flutter/src/gestures/binding.dart:482:22)
+E/flutter ( 6408): #16     RendererBinding.dispatchEvent (package:flutter/src/rendering/binding.dart:457:11)
+E/flutter ( 6408): #17     GestureBinding._handlePointerEventImmediately (package:flutter/src/gestures/binding.dart:427:7)
+E/flutter ( 6408): #18     GestureBinding.handlePointerEvent (package:flutter/src/gestures/binding.dart:390:5)
+E/flutter ( 6408): #19     GestureBinding._flushPointerEventQueue (package:flutter/src/gestures/binding.dart:337:7)
+E/flutter ( 6408): #20     GestureBinding._handlePointerDataPacket (package:flutter/src/gestures/binding.dart:306:9)
+E/flutter ( 6408): #21     _invoke1 (dart:ui/hooks.dart:328:13)
+E/flutter ( 6408): #22     PlatformDispatcher._dispatchPointerDataPacket (dart:ui/platform_dispatcher.dart:450:7)
+E/flutter ( 6408): #23     _dispatchPointerDataPacket (dart:ui/hooks.dart:262:31)
+E/flutter ( 6408): 
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 192
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 207
+E/flutter ( 6408): [ERROR:flutter/runtime/dart_vm_initializer.cc(40)] Unhandled Exception: Error: Could not find the correct Provider<UserState> above this Builder Widget
+E/flutter ( 6408): 
+E/flutter ( 6408): This happens because you used a `BuildContext` that does not include the provider
+E/flutter ( 6408): of your choice. There are a few common scenarios:
+E/flutter ( 6408): 
+E/flutter ( 6408): - You added a new provider in your `main.dart` and performed a hot-reload.
+E/flutter ( 6408):   To fix, perform a hot-restart.
+E/flutter ( 6408): 
+E/flutter ( 6408): - The provider you are trying to read is in a different route.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Providers are "scoped". So if you insert of provider inside a route, then
+E/flutter ( 6408):   other routes will not be able to access that provider.
+E/flutter ( 6408): 
+E/flutter ( 6408): - You used a `BuildContext` that is an ancestor of the provider you are trying to read.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Make sure that Builder is under your MultiProvider/Provider<UserState>.
+E/flutter ( 6408):   This usually happens when you are creating a provider and trying to read it immediately.
+E/flutter ( 6408): 
+E/flutter ( 6408):   For example, instead of:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // Will throw a ProviderNotFoundError, because `context` is associated
+E/flutter ( 6408):       // to the widget that is the parent of `Provider<Example>`
+E/flutter ( 6408):       child: Text(context.watch<Example>().toString()),
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408):   consider using `builder` like so:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // we use `builder` to obtain a new `BuildContext` that has access to the provider
+E/flutter ( 6408):       builder: (context, child) {
+E/flutter ( 6408):         // No longer throws
+E/flutter ( 6408):         return Text(context.watch<Example>().toString());
+E/flutter ( 6408):       }
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408): If none of these solutions work, consider asking for help on StackOverflow:
+E/flutter ( 6408): https://stackoverflow.com/questions/tagged/flutter
+E/flutter ( 6408): 
+E/flutter ( 6408): #0      Provider._inheritedElementOf (package:provider/src/provider.dart:343:7)
+E/flutter ( 6408): #1      Provider.of (package:provider/src/provider.dart:293:30)
+E/flutter ( 6408): #2      MyApp.build.<anonymous closure>.<anonymous closure>.<anonymous closure> (package:terpiez/main.dart:185:56)
+E/flutter ( 6408): #3      _InkResponseState.handleTap (package:flutter/src/material/ink_well.dart:1176:21)
+E/flutter ( 6408): #4      GestureRecognizer.invokeCallback (package:flutter/src/gestures/recognizer.dart:351:24)
+E/flutter ( 6408): #5      TapGestureRecognizer.handleTapUp (package:flutter/src/gestures/tap.dart:656:11)
+E/flutter ( 6408): #6      BaseTapGestureRecognizer._checkUp (package:flutter/src/gestures/tap.dart:313:5)
+E/flutter ( 6408): #7      BaseTapGestureRecognizer.handlePrimaryPointer (package:flutter/src/gestures/tap.dart:246:7)
+E/flutter ( 6408): #8      PrimaryPointerGestureRecognizer.handleEvent (package:flutter/src/gestures/recognizer.dart:703:9)
+E/flutter ( 6408): #9      PointerRouter._dispatch (package:flutter/src/gestures/pointer_router.dart:98:12)
+E/flutter ( 6408): #10     PointerRouter._dispatchEventToRoutes.<anonymous closure> (package:flutter/src/gestures/pointer_router.dart:143:9)
+E/flutter ( 6408): #11     _LinkedHashMapMixin.forEach (dart:_compact_hash:726:13)
+E/flutter ( 6408): #12     PointerRouter._dispatchEventToRoutes (package:flutter/src/gestures/pointer_router.dart:141:18)
+E/flutter ( 6408): #13     PointerRouter.route (package:flutter/src/gestures/pointer_router.dart:127:7)
+E/flutter ( 6408): #14     GestureBinding.handleEvent (package:flutter/src/gestures/binding.dart:502:19)
+E/flutter ( 6408): #15     GestureBinding.dispatchEvent (package:flutter/src/gestures/binding.dart:482:22)
+E/flutter ( 6408): #16     RendererBinding.dispatchEvent (package:flutter/src/rendering/binding.dart:457:11)
+E/flutter ( 6408): #17     GestureBinding._handlePointerEventImmediately (package:flutter/src/gestures/binding.dart:427:7)
+E/flutter ( 6408): #18     GestureBinding.handlePointerEvent (package:flutter/src/gestures/binding.dart:390:5)
+E/flutter ( 6408): #19     GestureBinding._flushPointerEventQueue (package:flutter/src/gestures/binding.dart:337:7)
+E/flutter ( 6408): #20     GestureBinding._handlePointerDataPacket (package:flutter/src/gestures/binding.dart:306:9)
+E/flutter ( 6408): #21     _invoke1 (dart:ui/hooks.dart:328:13)
+E/flutter ( 6408): #22     PlatformDispatcher._dispatchPointerDataPacket (dart:ui/platform_dispatcher.dart:450:7)
+E/flutter ( 6408): #23     _dispatchPointerDataPacket (dart:ui/hooks.dart:262:31)
+E/flutter ( 6408): 
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+E/flutter ( 6408): [ERROR:flutter/runtime/dart_vm_initializer.cc(40)] Unhandled Exception: Error: Could not find the correct Provider<UserState> above this Builder Widget
+E/flutter ( 6408): 
+E/flutter ( 6408): This happens because you used a `BuildContext` that does not include the provider
+E/flutter ( 6408): of your choice. There are a few common scenarios:
+E/flutter ( 6408): 
+E/flutter ( 6408): - You added a new provider in your `main.dart` and performed a hot-reload.
+E/flutter ( 6408):   To fix, perform a hot-restart.
+E/flutter ( 6408): 
+E/flutter ( 6408): - The provider you are trying to read is in a different route.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Providers are "scoped". So if you insert of provider inside a route, then
+E/flutter ( 6408):   other routes will not be able to access that provider.
+E/flutter ( 6408): 
+E/flutter ( 6408): - You used a `BuildContext` that is an ancestor of the provider you are trying to read.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Make sure that Builder is under your MultiProvider/Provider<UserState>.
+E/flutter ( 6408):   This usually happens when you are creating a provider and trying to read it immediately.
+E/flutter ( 6408): 
+E/flutter ( 6408):   For example, instead of:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // Will throw a ProviderNotFoundError, because `context` is associated
+E/flutter ( 6408):       // to the widget that is the parent of `Provider<Example>`
+E/flutter ( 6408):       child: Text(context.watch<Example>().toString()),
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408):   consider using `builder` like so:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // we use `builder` to obtain a new `BuildContext` that has access to the provider
+E/flutter ( 6408):       builder: (context, child) {
+E/flutter ( 6408):         // No longer throws
+E/flutter ( 6408):         return Text(context.watch<Example>().toString());
+E/flutter ( 6408):       }
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408): If none of these solutions work, consider asking for help on StackOverflow:
+E/flutter ( 6408): https://stackoverflow.com/questions/tagged/flutter
+E/flutter ( 6408): 
+E/flutter ( 6408): #0      Provider._inheritedElementOf (package:provider/src/provider.dart:343:7)
+E/flutter ( 6408): #1      Provider.of (package:provider/src/provider.dart:293:30)
+E/flutter ( 6408): #2      MyApp.build.<anonymous closure>.<anonymous closure>.<anonymous closure> (package:terpiez/main.dart:185:56)
+E/flutter ( 6408): #3      _InkResponseState.handleTap (package:flutter/src/material/ink_well.dart:1176:21)
+E/flutter ( 6408): #4      GestureRecognizer.invokeCallback (package:flutter/src/gestures/recognizer.dart:351:24)
+E/flutter ( 6408): #5      TapGestureRecognizer.handleTapUp (package:flutter/src/gestures/tap.dart:656:11)
+E/flutter ( 6408): #6      BaseTapGestureRecognizer._checkUp (package:flutter/src/gestures/tap.dart:313:5)
+E/flutter ( 6408): #7      BaseTapGestureRecognizer.handlePrimaryPointer (package:flutter/src/gestures/tap.dart:246:7)
+E/flutter ( 6408): #8      PrimaryPointerGestureRecognizer.handleEvent (package:flutter/src/gestures/recognizer.dart:703:9)
+E/flutter ( 6408): #9      PointerRouter._dispatch (package:flutter/src/gestures/pointer_router.dart:98:12)
+E/flutter ( 6408): #10     PointerRouter._dispatchEventToRoutes.<anonymous closure> (package:flutter/src/gestures/pointer_router.dart:143:9)
+E/flutter ( 6408): #11     _LinkedHashMapMixin.forEach (dart:_compact_hash:726:13)
+E/flutter ( 6408): #12     PointerRouter._dispatchEventToRoutes (package:flutter/src/gestures/pointer_router.dart:141:18)
+E/flutter ( 6408): #13     PointerRouter.route (package:flutter/src/gestures/pointer_router.dart:127:7)
+E/flutter ( 6408): #14     GestureBinding.handleEvent (package:flutter/src/gestures/binding.dart:502:19)
+E/flutter ( 6408): #15     GestureBinding.dispatchEvent (package:flutter/src/gestures/binding.dart:482:22)
+E/flutter ( 6408): #16     RendererBinding.dispatchEvent (package:flutter/src/rendering/binding.dart:457:11)
+E/flutter ( 6408): #17     GestureBinding._handlePointerEventImmediately (package:flutter/src/gestures/binding.dart:427:7)
+E/flutter ( 6408): #18     GestureBinding.handlePointerEvent (package:flutter/src/gestures/binding.dart:390:5)
+E/flutter ( 6408): #19     GestureBinding._flushPointerEventQueue (package:flutter/src/gestures/binding.dart:337:7)
+E/flutter ( 6408): #20     GestureBinding._handlePointerDataPacket (package:flutter/src/gestures/binding.dart:306:9)
+E/flutter ( 6408): #21     _invoke1 (dart:ui/hooks.dart:328:13)
+E/flutter ( 6408): #22     PlatformDispatcher._dispatchPointerDataPacket (dart:ui/platform_dispatcher.dart:450:7)
+E/flutter ( 6408): #23     _dispatchPointerDataPacket (dart:ui/hooks.dart:262:31)
+E/flutter ( 6408): 
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 188
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+E/flutter ( 6408): [ERROR:flutter/runtime/dart_vm_initializer.cc(40)] Unhandled Exception: Error: Could not find the correct Provider<UserState> above this Builder Widget
+E/flutter ( 6408): 
+E/flutter ( 6408): This happens because you used a `BuildContext` that does not include the provider
+E/flutter ( 6408): of your choice. There are a few common scenarios:
+E/flutter ( 6408): 
+E/flutter ( 6408): - You added a new provider in your `main.dart` and performed a hot-reload.
+E/flutter ( 6408):   To fix, perform a hot-restart.
+E/flutter ( 6408): 
+E/flutter ( 6408): - The provider you are trying to read is in a different route.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Providers are "scoped". So if you insert of provider inside a route, then
+E/flutter ( 6408):   other routes will not be able to access that provider.
+E/flutter ( 6408): 
+E/flutter ( 6408): - You used a `BuildContext` that is an ancestor of the provider you are trying to read.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Make sure that Builder is under your MultiProvider/Provider<UserState>.
+E/flutter ( 6408):   This usually happens when you are creating a provider and trying to read it immediately.
+E/flutter ( 6408): 
+E/flutter ( 6408):   For example, instead of:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // Will throw a ProviderNotFoundError, because `context` is associated
+E/flutter ( 6408):       // to the widget that is the parent of `Provider<Example>`
+E/flutter ( 6408):       child: Text(context.watch<Example>().toString()),
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408):   consider using `builder` like so:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // we use `builder` to obtain a new `BuildContext` that has access to the provider
+E/flutter ( 6408):       builder: (context, child) {
+E/flutter ( 6408):         // No longer throws
+E/flutter ( 6408):         return Text(context.watch<Example>().toString());
+E/flutter ( 6408):       }
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408): If none of these solutions work, consider asking for help on StackOverflow:
+E/flutter ( 6408): https://stackoverflow.com/questions/tagged/flutter
+E/flutter ( 6408): 
+E/flutter ( 6408): #0      Provider._inheritedElementOf (package:provider/src/provider.dart:343:7)
+E/flutter ( 6408): #1      Provider.of (package:provider/src/provider.dart:293:30)
+E/flutter ( 6408): #2      MyApp.build.<anonymous closure>.<anonymous closure>.<anonymous closure> (package:terpiez/main.dart:185:56)
+E/flutter ( 6408): #3      _InkResponseState.handleTap (package:flutter/src/material/ink_well.dart:1176:21)
+E/flutter ( 6408): #4      GestureRecognizer.invokeCallback (package:flutter/src/gestures/recognizer.dart:351:24)
+E/flutter ( 6408): #5      TapGestureRecognizer.handleTapUp (package:flutter/src/gestures/tap.dart:656:11)
+E/flutter ( 6408): #6      BaseTapGestureRecognizer._checkUp (package:flutter/src/gestures/tap.dart:313:5)
+E/flutter ( 6408): #7      BaseTapGestureRecognizer.handlePrimaryPointer (package:flutter/src/gestures/tap.dart:246:7)
+E/flutter ( 6408): #8      PrimaryPointerGestureRecognizer.handleEvent (package:flutter/src/gestures/recognizer.dart:703:9)
+E/flutter ( 6408): #9      PointerRouter._dispatch (package:flutter/src/gestures/pointer_router.dart:98:12)
+E/flutter ( 6408): #10     PointerRouter._dispatchEventToRoutes.<anonymous closure> (package:flutter/src/gestures/pointer_router.dart:143:9)
+E/flutter ( 6408): #11     _LinkedHashMapMixin.forEach (dart:_compact_hash:726:13)
+E/flutter ( 6408): #12     PointerRouter._dispatchEventToRoutes (package:flutter/src/gestures/pointer_router.dart:141:18)
+E/flutter ( 6408): #13     PointerRouter.route (package:flutter/src/gestures/pointer_router.dart:127:7)
+E/flutter ( 6408): #14     GestureBinding.handleEvent (package:flutter/src/gestures/binding.dart:502:19)
+E/flutter ( 6408): #15     GestureBinding.dispatchEvent (package:flutter/src/gestures/binding.dart:482:22)
+E/flutter ( 6408): #16     RendererBinding.dispatchEvent (package:flutter/src/rendering/binding.dart:457:11)
+E/flutter ( 6408): #17     GestureBinding._handlePointerEventImmediately (package:flutter/src/gestures/binding.dart:427:7)
+E/flutter ( 6408): #18     GestureBinding.handlePointerEvent (package:flutter/src/gestures/binding.dart:390:5)
+E/flutter ( 6408): #19     GestureBinding._flushPointerEventQueue (package:flutter/src/gestures/binding.dart:337:7)
+E/flutter ( 6408): #20     GestureBinding._handlePointerDataPacket (package:flutter/src/gestures/binding.dart:306:9)
+E/flutter ( 6408): #21     _invoke1 (dart:ui/hooks.dart:328:13)
+E/flutter ( 6408): #22     PlatformDispatcher._dispatchPointerDataPacket (dart:ui/platform_dispatcher.dart:450:7)
+E/flutter ( 6408): #23     _dispatchPointerDataPacket (dart:ui/hooks.dart:262:31)
+E/flutter ( 6408): 
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 208
+E/flutter ( 6408): [ERROR:flutter/runtime/dart_vm_initializer.cc(40)] Unhandled Exception: Error: Could not find the correct Provider<UserState> above this Builder Widget
+E/flutter ( 6408): 
+E/flutter ( 6408): This happens because you used a `BuildContext` that does not include the provider
+E/flutter ( 6408): of your choice. There are a few common scenarios:
+E/flutter ( 6408): 
+E/flutter ( 6408): - You added a new provider in your `main.dart` and performed a hot-reload.
+E/flutter ( 6408):   To fix, perform a hot-restart.
+E/flutter ( 6408): 
+E/flutter ( 6408): - The provider you are trying to read is in a different route.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Providers are "scoped". So if you insert of provider inside a route, then
+E/flutter ( 6408):   other routes will not be able to access that provider.
+E/flutter ( 6408): 
+E/flutter ( 6408): - You used a `BuildContext` that is an ancestor of the provider you are trying to read.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Make sure that Builder is under your MultiProvider/Provider<UserState>.
+E/flutter ( 6408):   This usually happens when you are creating a provider and trying to read it immediately.
+E/flutter ( 6408): 
+E/flutter ( 6408):   For example, instead of:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // Will throw a ProviderNotFoundError, because `context` is associated
+E/flutter ( 6408):       // to the widget that is the parent of `Provider<Example>`
+E/flutter ( 6408):       child: Text(context.watch<Example>().toString()),
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408):   consider using `builder` like so:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // we use `builder` to obtain a new `BuildContext` that has access to the provider
+E/flutter ( 6408):       builder: (context, child) {
+E/flutter ( 6408):         // No longer throws
+E/flutter ( 6408):         return Text(context.watch<Example>().toString());
+E/flutter ( 6408):       }
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408): If none of these solutions work, consider asking for help on StackOverflow:
+E/flutter ( 6408): https://stackoverflow.com/questions/tagged/flutter
+E/flutter ( 6408): 
+E/flutter ( 6408): #0      Provider._inheritedElementOf (package:provider/src/provider.dart:343:7)
+E/flutter ( 6408): #1      Provider.of (package:provider/src/provider.dart:293:30)
+E/flutter ( 6408): #2      MyApp.build.<anonymous closure>.<anonymous closure>.<anonymous closure> (package:terpiez/main.dart:185:56)
+E/flutter ( 6408): #3      _InkResponseState.handleTap (package:flutter/src/material/ink_well.dart:1176:21)
+E/flutter ( 6408): #4      GestureRecognizer.invokeCallback (package:flutter/src/gestures/recognizer.dart:351:24)
+E/flutter ( 6408): #5      TapGestureRecognizer.handleTapUp (package:flutter/src/gestures/tap.dart:656:11)
+E/flutter ( 6408): #6      BaseTapGestureRecognizer._checkUp (package:flutter/src/gestures/tap.dart:313:5)
+E/flutter ( 6408): #7      BaseTapGestureRecognizer.handlePrimaryPointer (package:flutter/src/gestures/tap.dart:246:7)
+E/flutter ( 6408): #8      PrimaryPointerGestureRecognizer.handleEvent (package:flutter/src/gestures/recognizer.dart:703:9)
+E/flutter ( 6408): #9      PointerRouter._dispatch (package:flutter/src/gestures/pointer_router.dart:98:12)
+E/flutter ( 6408): #10     PointerRouter._dispatchEventToRoutes.<anonymous closure> (package:flutter/src/gestures/pointer_router.dart:143:9)
+E/flutter ( 6408): #11     _LinkedHashMapMixin.forEach (dart:_compact_hash:726:13)
+E/flutter ( 6408): #12     PointerRouter._dispatchEventToRoutes (package:flutter/src/gestures/pointer_router.dart:141:18)
+E/flutter ( 6408): #13     PointerRouter.route (package:flutter/src/gestures/pointer_router.dart:127:7)
+E/flutter ( 6408): #14     GestureBinding.handleEvent (package:flutter/src/gestures/binding.dart:502:19)
+E/flutter ( 6408): #15     GestureBinding.dispatchEvent (package:flutter/src/gestures/binding.dart:482:22)
+E/flutter ( 6408): #16     RendererBinding.dispatchEvent (package:flutter/src/rendering/binding.dart:457:11)
+E/flutter ( 6408): #17     GestureBinding._handlePointerEventImmediately (package:flutter/src/gestures/binding.dart:427:7)
+E/flutter ( 6408): #18     GestureBinding.handlePointerEvent (package:flutter/src/gestures/binding.dart:390:5)
+E/flutter ( 6408): #19     GestureBinding._flushPointerEventQueue (package:flutter/src/gestures/binding.dart:337:7)
+E/flutter ( 6408): #20     GestureBinding._handlePointerDataPacket (package:flutter/src/gestures/binding.dart:306:9)
+E/flutter ( 6408): #21     _invoke1 (dart:ui/hooks.dart:328:13)
+E/flutter ( 6408): #22     PlatformDispatcher._dispatchPointerDataPacket (dart:ui/platform_dispatcher.dart:450:7)
+E/flutter ( 6408): #23     _dispatchPointerDataPacket (dart:ui/hooks.dart:262:31)
+E/flutter ( 6408): 
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 192
+E/flutter ( 6408): [ERROR:flutter/runtime/dart_vm_initializer.cc(40)] Unhandled Exception: Error: Could not find the correct Provider<UserState> above this Builder Widget
+E/flutter ( 6408): 
+E/flutter ( 6408): This happens because you used a `BuildContext` that does not include the provider
+E/flutter ( 6408): of your choice. There are a few common scenarios:
+E/flutter ( 6408): 
+E/flutter ( 6408): - You added a new provider in your `main.dart` and performed a hot-reload.
+E/flutter ( 6408):   To fix, perform a hot-restart.
+E/flutter ( 6408): 
+E/flutter ( 6408): - The provider you are trying to read is in a different route.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Providers are "scoped". So if you insert of provider inside a route, then
+E/flutter ( 6408):   other routes will not be able to access that provider.
+E/flutter ( 6408): 
+E/flutter ( 6408): - You used a `BuildContext` that is an ancestor of the provider you are trying to read.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Make sure that Builder is under your MultiProvider/Provider<UserState>.
+E/flutter ( 6408):   This usually happens when you are creating a provider and trying to read it immediately.
+E/flutter ( 6408): 
+E/flutter ( 6408):   For example, instead of:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // Will throw a ProviderNotFoundError, because `context` is associated
+E/flutter ( 6408):       // to the widget that is the parent of `Provider<Example>`
+E/flutter ( 6408):       child: Text(context.watch<Example>().toString()),
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408):   consider using `builder` like so:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // we use `builder` to obtain a new `BuildContext` that has access to the provider
+E/flutter ( 6408):       builder: (context, child) {
+E/flutter ( 6408):         // No longer throws
+E/flutter ( 6408):         return Text(context.watch<Example>().toString());
+E/flutter ( 6408):       }
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408): If none of these solutions work, consider asking for help on StackOverflow:
+E/flutter ( 6408): https://stackoverflow.com/questions/tagged/flutter
+E/flutter ( 6408): 
+E/flutter ( 6408): #0      Provider._inheritedElementOf (package:provider/src/provider.dart:343:7)
+E/flutter ( 6408): #1      Provider.of (package:provider/src/provider.dart:293:30)
+E/flutter ( 6408): #2      MyApp.build.<anonymous closure>.<anonymous closure>.<anonymous closure> (package:terpiez/main.dart:185:56)
+E/flutter ( 6408): #3      _InkResponseState.handleTap (package:flutter/src/material/ink_well.dart:1176:21)
+E/flutter ( 6408): #4      GestureRecognizer.invokeCallback (package:flutter/src/gestures/recognizer.dart:351:24)
+E/flutter ( 6408): #5      TapGestureRecognizer.handleTapUp (package:flutter/src/gestures/tap.dart:656:11)
+E/flutter ( 6408): #6      BaseTapGestureRecognizer._checkUp (package:flutter/src/gestures/tap.dart:313:5)
+E/flutter ( 6408): #7      BaseTapGestureRecognizer.handlePrimaryPointer (package:flutter/src/gestures/tap.dart:246:7)
+E/flutter ( 6408): #8      PrimaryPointerGestureRecognizer.handleEvent (package:flutter/src/gestures/recognizer.dart:703:9)
+E/flutter ( 6408): #9      PointerRouter._dispatch (package:flutter/src/gestures/pointer_router.dart:98:12)
+E/flutter ( 6408): #10     PointerRouter._dispatchEventToRoutes.<anonymous closure> (package:flutter/src/gestures/pointer_router.dart:143:9)
+E/flutter ( 6408): #11     _LinkedHashMapMixin.forEach (dart:_compact_hash:726:13)
+E/flutter ( 6408): #12     PointerRouter._dispatchEventToRoutes (package:flutter/src/gestures/pointer_router.dart:141:18)
+E/flutter ( 6408): #13     PointerRouter.route (package:flutter/src/gestures/pointer_router.dart:127:7)
+E/flutter ( 6408): #14     GestureBinding.handleEvent (package:flutter/src/gestures/binding.dart:502:19)
+E/flutter ( 6408): #15     GestureBinding.dispatchEvent (package:flutter/src/gestures/binding.dart:482:22)
+E/flutter ( 6408): #16     RendererBinding.dispatchEvent (package:flutter/src/rendering/binding.dart:457:11)
+E/flutter ( 6408): #17     GestureBinding._handlePointerEventImmediately (package:flutter/src/gestures/binding.dart:427:7)
+E/flutter ( 6408): #18     GestureBinding.handlePointerEvent (package:flutter/src/gestures/binding.dart:390:5)
+E/flutter ( 6408): #19     GestureBinding._flushPointerEventQueue (package:flutter/src/gestures/binding.dart:337:7)
+E/flutter ( 6408): #20     GestureBinding._handlePointerDataPacket (package:flutter/src/gestures/binding.dart:306:9)
+E/flutter ( 6408): #21     _invoke1 (dart:ui/hooks.dart:328:13)
+E/flutter ( 6408): #22     PlatformDispatcher._dispatchPointerDataPacket (dart:ui/platform_dispatcher.dart:450:7)
+E/flutter ( 6408): #23     _dispatchPointerDataPacket (dart:ui/hooks.dart:262:31)
+E/flutter ( 6408): 
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 207
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+E/flutter ( 6408): [ERROR:flutter/runtime/dart_vm_initializer.cc(40)] Unhandled Exception: Error: Could not find the correct Provider<UserState> above this Builder Widget
+E/flutter ( 6408): 
+E/flutter ( 6408): This happens because you used a `BuildContext` that does not include the provider
+E/flutter ( 6408): of your choice. There are a few common scenarios:
+E/flutter ( 6408): 
+E/flutter ( 6408): - You added a new provider in your `main.dart` and performed a hot-reload.
+E/flutter ( 6408):   To fix, perform a hot-restart.
+E/flutter ( 6408): 
+E/flutter ( 6408): - The provider you are trying to read is in a different route.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Providers are "scoped". So if you insert of provider inside a route, then
+E/flutter ( 6408):   other routes will not be able to access that provider.
+E/flutter ( 6408): 
+E/flutter ( 6408): - You used a `BuildContext` that is an ancestor of the provider you are trying to read.
+E/flutter ( 6408): 
+E/flutter ( 6408):   Make sure that Builder is under your MultiProvider/Provider<UserState>.
+E/flutter ( 6408):   This usually happens when you are creating a provider and trying to read it immediately.
+E/flutter ( 6408): 
+E/flutter ( 6408):   For example, instead of:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // Will throw a ProviderNotFoundError, because `context` is associated
+E/flutter ( 6408):       // to the widget that is the parent of `Provider<Example>`
+E/flutter ( 6408):       child: Text(context.watch<Example>().toString()),
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408):   consider using `builder` like so:
+E/flutter ( 6408): 
+E/flutter ( 6408):   ```
+E/flutter ( 6408):   Widget build(BuildContext context) {
+E/flutter ( 6408):     return Provider<Example>(
+E/flutter ( 6408):       create: (_) => Example(),
+E/flutter ( 6408):       // we use `builder` to obtain a new `BuildContext` that has access to the provider
+E/flutter ( 6408):       builder: (context, child) {
+E/flutter ( 6408):         // No longer throws
+E/flutter ( 6408):         return Text(context.watch<Example>().toString());
+E/flutter ( 6408):       }
+E/flutter ( 6408):     );
+E/flutter ( 6408):   }
+E/flutter ( 6408):   ```
+E/flutter ( 6408): 
+E/flutter ( 6408): If none of these solutions work, consider asking for help on StackOverflow:
+E/flutter ( 6408): https://stackoverflow.com/questions/tagged/flutter
+E/flutter ( 6408): 
+E/flutter ( 6408): #0      Provider._inheritedElementOf (package:provider/src/provider.dart:343:7)
+E/flutter ( 6408): #1      Provider.of (package:provider/src/provider.dart:293:30)
+E/flutter ( 6408): #2      MyApp.build.<anonymous closure>.<anonymous closure>.<anonymous closure> (package:terpiez/main.dart:185:56)
+E/flutter ( 6408): #3      _InkResponseState.handleTap (package:flutter/src/material/ink_well.dart:1176:21)
+E/flutter ( 6408): #4      GestureRecognizer.invokeCallback (package:flutter/src/gestures/recognizer.dart:351:24)
+E/flutter ( 6408): #5      TapGestureRecognizer.handleTapUp (package:flutter/src/gestures/tap.dart:656:11)
+E/flutter ( 6408): #6      BaseTapGestureRecognizer._checkUp (package:flutter/src/gestures/tap.dart:313:5)
+E/flutter ( 6408): #7      BaseTapGestureRecognizer.handlePrimaryPointer (package:flutter/src/gestures/tap.dart:246:7)
+E/flutter ( 6408): #8      PrimaryPointerGestureRecognizer.handleEvent (package:flutter/src/gestures/recognizer.dart:703:9)
+E/flutter ( 6408): #9      PointerRouter._dispatch (package:flutter/src/gestures/pointer_router.dart:98:12)
+E/flutter ( 6408): #10     PointerRouter._dispatchEventToRoutes.<anonymous closure> (package:flutter/src/gestures/pointer_router.dart:143:9)
+E/flutter ( 6408): #11     _LinkedHashMapMixin.forEach (dart:_compact_hash:726:13)
+E/flutter ( 6408): #12     PointerRouter._dispatchEventToRoutes (package:flutter/src/gestures/pointer_router.dart:141:18)
+E/flutter ( 6408): #13     PointerRouter.route (package:flutter/src/gestures/pointer_router.dart:127:7)
+E/flutter ( 6408): #14     GestureBinding.handleEvent (package:flutter/src/gestures/binding.dart:502:19)
+E/flutter ( 6408): #15     GestureBinding.dispatchEvent (package:flutter/src/gestures/binding.dart:482:22)
+E/flutter ( 6408): #16     RendererBinding.dispatchEvent (package:flutter/src/rendering/binding.dart:457:11)
+E/flutter ( 6408): #17     GestureBinding._handlePointerEventImmediately (package:flutter/src/gestures/binding.dart:427:7)
+E/flutter ( 6408): #18     GestureBinding.handlePointerEvent (package:flutter/src/gestures/binding.dart:390:5)
+E/flutter ( 6408): #19     GestureBinding._flushPointerEventQueue (package:flutter/src/gestures/binding.dart:337:7)
+E/flutter ( 6408): #20     GestureBinding._handlePointerDataPacket (package:flutter/src/gestures/binding.dart:306:9)
+E/flutter ( 6408): #21     _invoke1 (dart:ui/hooks.dart:328:13)
+E/flutter ( 6408): #22     PlatformDispatcher._dispatchPointerDataPacket (dart:ui/platform_dispatcher.dart:450:7)
+E/flutter ( 6408): #23     _dispatchPointerDataPacket (dart:ui/hooks.dart:262:31)
+E/flutter ( 6408): 
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 188
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 208
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 211
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 210
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 207
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 194
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 200
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 189
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 202
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab2bd0 hos timage handle 0x7000400000848
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 208
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6acc450 hos timage handle 0x7000400000845
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 205
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab07d0 hos timage handle 0x7000400000846
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 211
+I/MESA    ( 6408): exportSyncFdForQSRILocked: call for image 0xb4000073f6ab1750 hos timage handle 0x7000400000847
+I/MESA    ( 6408): exportSyncFdForQSRILocked: got fd: 210
+Application finished.
+the Dart compiler exited unexpectedly.
