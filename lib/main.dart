@@ -26,22 +26,33 @@ import 'package:audioplayers/audioplayers.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> navigatorKey2 = GlobalKey<NavigatorState>();
+final GlobalKey<NavigatorState> navigatorKey3 = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
    await TerpiezBackgroundService.initialize();
-  final hasLoggedIn = await ManageCredentials.hasLoggedIn();
+ 
+
+  final launchDetails = await TerpiezBackgroundService._notifications.getNotificationAppLaunchDetails();
+  final startingTab = (launchDetails?.didNotificationLaunchApp ?? false) && 
+                     launchDetails?.notificationResponse?.payload == 'finder' ? 1 : 0;
+
+   final hasLoggedIn = await ManageCredentials.hasLoggedIn();
 
 
-  void runWithMessenger(Widget app) {
-    runApp(MaterialApp(
-      home: Builder(
-        builder: (context) => ScaffoldMessenger(
-          child: app,
-        ),
+
+  void runWithMessenger(Widget app, {int initialTab = 0}) {
+  runApp(MaterialApp(
+    home: ScaffoldMessenger(
+      key: GlobalKey<ScaffoldMessengerState>(),
+      child: DefaultTabController(
+        length: 3,
+        initialIndex: initialTab,
+        child: app,
       ),
-    ));
-  }
+    ),
+  ));
+}
 
  
   if (!hasLoggedIn) {
@@ -102,14 +113,12 @@ void main() async {
       userState.clearCaughtLocations();
 
       runWithMessenger(
-        ScaffoldMessenger(
-          key: GlobalKey<ScaffoldMessengerState>(),
-          child: ChangeNotifierProvider.value(
-          value: userState,
-          child: const MyApp(),
-        ),
-        ),
-      );
+  ChangeNotifierProvider.value(
+    value: userState,
+    child: const MyApp(),
+  ),
+  initialTab: 0
+);
     }
   }
 
@@ -117,12 +126,13 @@ void main() async {
 
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final int? initialIndex;
+  const MyApp({super.key, this.initialIndex  = 0});
 
   @override
   Widget build(BuildContext context) {
     final userState = Provider.of<UserState>(context);
-    return  MaterialApp(
+    return MaterialApp(
       navigatorKey: navigatorKey2,
       scaffoldMessengerKey: userState.scaffoldKey,
       title: 'Flutter Demo',
@@ -130,13 +140,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // builder: (context, child){
-      //   return Scaffold(
-      //     body: child,
-      //   );
-      // },
-      home: DefaultTabController(
-        length: 3,
+      home:ChangeNotifierProvider.value(
+        value: userState,
+        child: DefaultTabController(
+          length: 3,
+       
+        initialIndex: initialIndex ?? 0,
         child: Scaffold(
           drawer: provider.Consumer<UserState>(
             builder: (context, userState, child) => Drawer(
@@ -204,85 +213,73 @@ class MyApp extends StatelessWidget {
           body: SafeArea(
             child: TabBarView(
               children: [
+                // Stats Tab
                 Padding(
-                  padding:  const EdgeInsets.all(10.0),
-                  child:  Column(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(height: 20),
-                      const Text(
-                        'Statistics',
-                        style: TextStyle(fontSize: 30),
-                      ),
+                      const Text('Statistics', style: TextStyle(fontSize: 30)),
                       const SizedBox(height: 40),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          const Expanded(
-                            child: Text('Terpiez Found:'),
-                          ),
-                          // const Text('12', textAlign: TextAlign.center),
-                          provider.Consumer<UserState> (
-                            builder: (context, userState, child){
-                              return Text(
-                                '${userState.terpiezCaught}',
-                                textAlign: TextAlign.center,
-                              );
+                          const Expanded(child: Text('Terpiez Found:')),
+                          provider.Consumer<UserState>(
+                            builder: (context, userState, child) {
+                              return Text('${userState.terpiezCaught}',
+                                textAlign: TextAlign.center);
                             },
-                            ),
+                          ),
                         ],
                       ),
                       const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          const Expanded(
-                            child: Text('Days Active:'),
-                          ),
-                          // Text('3', textAlign: TextAlign.center),
-                          provider.Consumer<UserState> (
-                            builder: (context, userState, child){
-                              return Text(
-                              '${userState.numOfDaysPlayed}',
-                              textAlign: TextAlign.center,
-                              );
+                          const Expanded(child: Text('Days Active:')),
+                          provider.Consumer<UserState>(
+                            builder: (context, userState, child) {
+                              return Text('${userState.numOfDaysPlayed}',
+                                textAlign: TextAlign.center);
                             },
                           ),
                         ],
                       ),
-                      
                       Expanded(
                         child: Center(
-                          child:provider.Consumer<UserState> (
-                        builder: (context, userState, child){
-                          return Text(
-                            'User: ${userState.userID}',
-                            textAlign: TextAlign.center,
-                          );
-                        },
-                      ) ,) ,)
+                          child: provider.Consumer<UserState>(
+                            builder: (context, userState, child) {
+                              return Text('User: ${userState.userID}',
+                                textAlign: TextAlign.center);
+                            },
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
+                // Finder Tab
                 const FinderView(),
-
-               provider.Consumer<UserState>(
+                // List Tab
+                provider.Consumer<UserState>(
                   builder: (context, userState, child) {
-                    final uniqueCaughtTerpiez = userState.getTerpiez.where((terp) => terp.caught).toSet().toList();
+                    final uniqueCaughtTerpiez = userState.getTerpiez
+                        .where((terp) => terp.caught)
+                        .toSet()
+                        .toList();
 
                     return ListView.builder(
                       itemCount: uniqueCaughtTerpiez.length,
                       itemBuilder: (context, index) {
                         final terp = uniqueCaughtTerpiez[index];
                         return ListTile(
-                                    leading: terp.thumbnailPath != null
-                            ? Image.file(
-                                File(terp.thumbnailPath!),
-                                width: 40,
-                                height: 40,
-                              )
-                            : const Icon(Icons.catching_pokemon, size: 40),
+                          leading: terp.thumbnailPath != null
+                              ? Image.file(File(terp.thumbnailPath!),
+                                  width: 40, height: 40)
+                              : const Icon(Icons.catching_pokemon, size: 40),
                           title: Text(terp.name),
                           onTap: () => Navigator.push(
                             context,
@@ -294,13 +291,13 @@ class MyApp extends StatelessWidget {
                       },
                     );
                   },
-               ),
+                ),
               ],
             ),
           ),
         ),
-      )
-     // ),
+      ),
+      ),
     );
   }
 }
@@ -518,8 +515,10 @@ Future<void> _handleShake() async {
           builder: (context) => CatchDialog(terpiez: caughtTerpiez),
         );
 
-        await SoundService().playCatchSound();
+         await SoundService().playCatchSound();
       }
+
+     //await SoundService().playCatchSound();
     } else {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -972,7 +971,7 @@ class CatchDialog extends StatelessWidget {
 
 class UserState extends ChangeNotifier {
   int _terpiezCaught = 0;
-  final String _userID;
+  String _userID;
   DateTime _startDate;
   Position? _currentLocation;
   double? _nearestDistance; 
@@ -1355,48 +1354,65 @@ Future<void> initialize(RedisService redisService) async {
     }
 
     // Add to UserState class
-Future<void> resetAllData() async {
-  try {
-    // Generate new UUID first
-    String newUUID = const Uuid().v4();
-    await ManageCredentials.storeUUID(newUUID);
-    
-    // Reset local state
-    _terpiezCaught = 0;
-    _startDate = DateTime.now();
-    
-    for (var terp in terpiez) {
-      terp.caught = false;
-      terp.caughtLocations = [terp.location];
-      if (terp.thumbnailPath != null) {
-        await File(terp.thumbnailPath!).delete();
+  Future<void> resetAllData() async {
+    try {
+      final String newUUID = const Uuid().v4();
+      
+      // Update all storage locations
+      await ManageCredentials.storeUUID(newUUID);
+      final storage = const FlutterSecureStorage();
+      await storage.write(key: 'user_uuid', value: newUUID);
+      
+      // Reset all state variables
+      _userID = newUUID;
+      _terpiezCaught = 0;
+      _startDate = DateTime.now();
+      
+      // Reset Terpiez data and clean up files
+      for (var terp in terpiez) {
+        terp.caught = false;
+        terp.caughtLocations = [terp.location];
+        
+        if (terp.thumbnailPath != null) {
+          try {
+            final file = File(terp.thumbnailPath!);
+            if (await file.exists()) {
+              await file.delete();
+            }
+          } catch (e) {
+            debugPrint('Error deleting thumbnail: $e');
+          }
+          terp.thumbnailPath = null;
+        }
+        
+        if (terp.fullImagePath != null) {
+          try {
+            final file = File(terp.fullImagePath!);
+            if (await file.exists()) {
+              await file.delete();
+            }
+          } catch (e) {
+            debugPrint('Error deleting full image: $e');
+          }
+          terp.fullImagePath = null;
+        }
       }
-      if (terp.fullImagePath != null) {
-        await File(terp.fullImagePath!).delete();
-      }
-      terp.thumbnailPath = null;
-      terp.fullImagePath = null;
-    }
-    
-    // Try Redis update, but don't block on failure
-    if (_redisService != null) {
-      try {
+      
+      // Update Redis if connected
+      if (_redisService != null && _isConnected) {
         await _redisService!.updateUserData(newUUID, {
           'terpiezCaught': 0,
           'daysActive': 0,
           'caughtTerpiez': [],
         });
-      } catch (e) {
-        debugPrint('Redis update failed during reset: $e');
       }
+      
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error in resetAllData: $e');
+      rethrow;
     }
-    
-    notifyListeners();
-  } catch (e) {
-    debugPrint('Error in resetAllData: $e');
-    rethrow;
   }
-}
 }
 
 
@@ -1408,31 +1424,55 @@ class TerpiezBackgroundService {
   static const foregroundNotificationId = 1;
   static const nearbyNotificationId = 2;
   static final FlutterBackgroundService _service = FlutterBackgroundService();
+  static final SoundService _soundService = SoundService();
 
-  static void _handleNotificationTap(String? payload) {
-    if (payload == 'finder' && navigatorKey2.currentContext != null) {
-    final context = navigatorKey2.currentContext!;
-    final tabController = DefaultTabController.of(context);
-    
-    // If app is already running
-    if (tabController != null) {
-      tabController.animateTo(1); // Switch to Finder tab
-    } else {
-      // App was not running, navigate after initialization
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (context.mounted) {
-          final newTabController = DefaultTabController.of(context);
-          newTabController?.animateTo(1);
-        }
-      });
+  static void _handleNotificationTap(String? payload) async {
+    if (payload == 'finder') {
+    try{
+    final hasLoggedIn = await ManageCredentials.hasLoggedIn();
+    if (!hasLoggedIn) return;
+
+    final credentials = await ManageCredentials.getCredentials();
+    if (credentials['username'] != null && credentials['password'] != null) {
+      final redisService = RedisService(
+        username: credentials['username']!,
+        password: credentials['password']!,
+      );
+      final userState = UserState();
+      await userState.initialize(redisService);
+
+       runApp(
+        MaterialApp(
+          navigatorKey: navigatorKey2,
+          home: Builder(
+            builder: (context) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                DefaultTabController.of(context)?.animateTo(1);
+              });
+              return ChangeNotifierProvider.value(
+                value: userState,
+                child: const MyApp(),
+              );
+            },
+          ),
+        ),
+      );
     }
-  }
-  }
+    } catch (e) {
+      debugPrint('Error: $e');
+    }
+    
+}
+}
 
   static Future<void> initialize() async {
     // Initialize notifications
-    const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
-    const initSettings = InitializationSettings(android: androidSettings);
+     debugPrint("Starting TerpiezBackground service initialization");
+  await _soundService.initialize();
+  debugPrint("Sound service initialized, enabled: ${_soundService.isSoundEnabled}");
+  
+  const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+  const initSettings = InitializationSettings(android: androidSettings);
     
     // Handle notification clicks when app launches
     // final NotificationAppLaunchDetails? launchDetails = 
@@ -1452,7 +1492,7 @@ class TerpiezBackgroundService {
       notificationChannelId,
       'Nearby Terpiez',
       importance: Importance.high,
-      sound: RawResourceAndroidNotificationSound('nearby_sound'),
+      sound: null,
       playSound: false,
     );
 
@@ -1501,28 +1541,37 @@ class TerpiezBackgroundService {
       service.setAsForegroundService();
     }
 
-    final soundService = SoundService();
-    await soundService.initialize();
+    //final soundService = SoundService();
+    final prefs = await SharedPreferences.getInstance();
+    final soundEnabled = prefs.getBool('sound_enabled') ?? true;
+
+    if (soundEnabled) {
+      debugPrint("Background service starting with sound enabled");
+      await _soundService.initialize();
+    }
 
     LocationSettings locationSettings = const LocationSettings(
       accuracy: LocationAccuracy.high,
       distanceFilter: 5,
     );
 
-    Geolocator.getPositionStream(locationSettings: locationSettings)
-        .listen((Position position) async {
-           debugPrint("Position update received: ${position.latitude}, ${position.longitude}");
-      final terpiez = await _getNearbyTerpiez(position);
-      debugPrint("Nearby Terpiez check result: $terpiez");
-      if (terpiez != null) {
-        debugPrint("Attempting to show notification for: ${terpiez['name']}");
-        await Future.wait([
-          SoundService().playNearbySound(),
-          _showNearbyNotification(terpiez['name']),
+     Geolocator.getPositionStream(locationSettings: locationSettings)
+      .listen((Position position) async {
+        debugPrint("Position update received: ${position.latitude}, ${position.longitude}");
+        final terpiez = await _getNearbyTerpiez(position);
+        if (terpiez != null) {
+          // Re-check sound preferences each time
+          await _soundService.initialize();
+          debugPrint("Sound enabled in background: ${_soundService.isSoundEnabled}");
           
-        ]);
-      }
-    });
+          if(_soundService.isSoundEnabled) {
+            await _soundService.playNearbySound();
+          }
+          await _showNearbyNotification(terpiez['name']);
+        }
+      });
+    //  }
+    //});
   }
 
   static Future<Map<String, dynamic>?> _getNearbyTerpiez(Position position) async {
@@ -1570,38 +1619,39 @@ class TerpiezBackgroundService {
   static Future<void> _showNearbyNotification(String terpiezName) async {
   debugPrint("Starting notification setup");
   
-  try {
-    const androidDetails = AndroidNotificationDetails(
-      notificationChannelId,
-      'Nearby Terpiez',
-      channelDescription: 'Notifications for nearby Terpiez',
-      importance: Importance.max,  // Changed to max
-      priority: Priority.high,
-      //sound: RawResourceAndroidNotificationSound('nearby_sound'),
-      playSound: false,
-      ongoing: false,
-      autoCancel: true,
-      enableLights: true,
-      enableVibration: true,
-      category: AndroidNotificationCategory.alarm  // Added category
-    );
+  final soundEnabled = SoundService().isSoundEnabled;
 
-    final id = DateTime.now().millisecondsSinceEpoch % 100000;
-    debugPrint("Showing notification with ID: $id");
+  debugPrint("Showing notification with sound enabled: $soundEnabled");
     
-    await _notifications.show(
-      id,
-      'Terpiez Nearby!',
-      'A $terpiezName is within range!',
-      const NotificationDetails(android: androidDetails),
-      payload: 'finder'
-    );
-    
-    debugPrint("Notification show call completed");
-  } catch (e) {
-    debugPrint("Error showing notification: $e");
-  }
-}
+    try {
+      final androidDetails = AndroidNotificationDetails(
+       notificationChannelId,
+        'Nearby Terpiez',
+        channelDescription: 'Notifications for nearby Terpiez',
+        importance: Importance.max,
+        priority: Priority.high,
+        sound: null,
+        playSound: false,
+        ongoing: false,
+        autoCancel: true,
+        enableLights: true,
+        enableVibration: true,
+      );
+
+      await _notifications.show(
+        DateTime.now().millisecondsSinceEpoch % 100000,
+        'Terpiez Nearby!',
+        'A $terpiezName is within range!',
+        NotificationDetails(android: androidDetails),
+        payload: 'finder'
+      );
+      //  if (soundEnabled) {
+      //     await SoundService().playNearbySound();
+      //   }
+    } catch (e) {
+      debugPrint("Error showing notification: $e");
+    }
+    }
 }
 
 class SoundService {
@@ -1612,52 +1662,63 @@ class SoundService {
   final AudioPlayer _nearbyPlayer = AudioPlayer();
   bool _soundEnabled = true;
   static const _soundKey = 'sound_enabled';
-
+  
   SoundService._internal();
 
   Future<void> initialize() async {
+    final prefs = await SharedPreferences.getInstance();
     await AudioCache.instance.loadAll([
-      'sounds/catch_sound.wav',
-      'sounds/nearby_sound.wav',
+      'catch_sound.wav', 
+      'nearby_sound.wav',
     ]);
-    _soundEnabled = await _loadSoundPreference();
+    _soundEnabled = prefs.getBool(_soundKey) ?? true;
+    debugPrint("Sound service initialized with enabled: $_soundEnabled");
   }
 
   Future<void> playCatchSound() async {
     if (!_soundEnabled) return;
     await _catchPlayer.stop();
-    await _catchPlayer.play(AssetSource('sounds/catch_sound.wav'));
+    await _catchPlayer.play(AssetSource('catch_sound.wav'));
   }
 
   Future<void> playNearbySound() async {
-    if (!_soundEnabled) return;
-    await _nearbyPlayer.stop();
-    await _nearbyPlayer.play(AssetSource('sounds/nearby_sound.wav'));
+    debugPrint("Attempting to play nearby sound");
+    if (!_soundEnabled) {
+      debugPrint("Sound disabled, skipping");
+      return;
+    }
+    
+    try {
+      await _nearbyPlayer.stop();
+    debugPrint("Loading sound file...");
+    await _nearbyPlayer.play(AssetSource('nearby_sound.wav'));
+    
+    _nearbyPlayer.onPlayerStateChanged.listen((state) {
+      debugPrint("Player state changed: $state");
+    });
+    
+    _nearbyPlayer.onPlayerComplete.listen((event) {
+      debugPrint("Sound finished playing");
+    });
+    } catch (e) {
+      debugPrint("Play error: $e");
+    }
   }
 
   Future<void> setSoundEnabled(bool enabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_soundKey, enabled);
     _soundEnabled = enabled;
-    await _saveSoundPreference(enabled);
+    debugPrint("Sound enabled set to: $_soundEnabled");
   }
 
   bool get isSoundEnabled => _soundEnabled;
-
-  Future<bool> _loadSoundPreference() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(_soundKey) ?? true;
-  }
-
-  Future<void> _saveSoundPreference(bool enabled) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_soundKey, enabled);
-  }
 
   void dispose() {
     _catchPlayer.dispose();
     _nearbyPlayer.dispose();
   }
 }
-
 
 class BackgroundAnimation extends StatefulWidget{
   @override
@@ -1740,8 +1801,9 @@ class ManageCredentials {
   static const String _uuidKey = 'user_uuid';
   static const String _firstLaunchKey = 'default_firstVal';
   static const String _hasLoggedInKey = 'has_LoggedIN';
+  static const String _secureUUIDKey = 'secure_user_uuid';
 
-  static final _storage = FlutterSecureStorage();
+  static final _storage =  const FlutterSecureStorage();
 
   static Future<bool> hasLoggedIn() async {
     final prefs = await SharedPreferences.getInstance();
@@ -1763,13 +1825,26 @@ class ManageCredentials {
     };
   }
   static Future<void> storeUUID(String uuid) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_uuidKey, uuid);
+     final prefs = await SharedPreferences.getInstance();
+    await Future.wait([
+      prefs.setString(_uuidKey, uuid),
+      _storage.write(key: _secureUUIDKey, value: uuid),
+  ]);
   }
   
   static Future<String?> getUUID() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_uuidKey);
+    final sharedPrefsUuid = prefs.getString(_uuidKey);
+    final secureStorageUuid = await _storage.read(key: _secureUUIDKey);
+    
+    if (sharedPrefsUuid != null && secureStorageUuid != null) {
+      if (sharedPrefsUuid != secureStorageUuid) {
+        await prefs.setString(_uuidKey, secureStorageUuid);
+        return secureStorageUuid;
+      }
+      return sharedPrefsUuid;
+    }
+    return sharedPrefsUuid ?? secureStorageUuid;
   }
   
   // Store/retrieve first launch date

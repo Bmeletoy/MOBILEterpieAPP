@@ -75,8 +75,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/sounds/catch_sound.wav
-    - assets/sounds/nearby_sound.wav
+    - assets/catch_sound.wav
+    - assets/nearby_sound.wav
 
   # To add assets to your application, add an assets section, like this:
   # assets:
